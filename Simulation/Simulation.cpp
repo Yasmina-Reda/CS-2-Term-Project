@@ -80,7 +80,7 @@ bool Arrived(DEQ line, int time, Airplane& plane, int probability)
 Double R =generateRandDouble
 if (R<probability)
 {
-	if(line.QEGIsFull())
+	if(line.DEQIsFull())
 	{
 		cout<<"Error: Line is Full";
 	}
