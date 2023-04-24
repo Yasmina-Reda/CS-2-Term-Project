@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <DEQ>
+#include "DEQ.h"
 #include <random>
 #include "Airplane.h"
 using namespace std;
@@ -35,9 +35,14 @@ public:
 
     // Generates random circumstances that affect the landing time of an airplane
     void generateCircumstances(Airplane* airplane);
+    
+    // Generates random sweather that affect the landing time of an airplane
+   string generateWeather();
 
 private:
     int airplaneCount;
     DEQ  deque;
+    Weather weather;
+    Country country;
     
 };
