@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Airplane.h"
 using namespace std;
 
 class DEQ{
