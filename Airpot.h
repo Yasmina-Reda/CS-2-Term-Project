@@ -34,7 +34,7 @@ public:
     void insertDEQ(Airplane* airplane);
 
     // Generates random circumstances that affect the landing time of an airplane
-    void Randomgenerate(Airplane* airplane);
+    Airplane& Randomgenerate(Airplane* airplane);
     
     // Generates random sweather that affect the landing time of an airplane
    string generateWeather();
