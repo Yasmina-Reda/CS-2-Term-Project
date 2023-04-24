@@ -41,6 +41,18 @@ struct Airplane {
 
     // Getter function for the pointer to the next airplane in a linked list
     Airplane* getNext();
+    
+     // Setter for WaitTime
+     void setWaitTime(const std::string& waittime);
+    
+    //Getter for WaitTime
+     string getWaitTime() const;
+        
+    // Setter for ArrivalTime
+    void setArrivalTime(const std::string& arrivaltime);
+    
+    //Getter ArrivalTime
+    string getArrivalTime() const;
 
     // Getter function for the airplane's urgent status
     bool getUrgent();
