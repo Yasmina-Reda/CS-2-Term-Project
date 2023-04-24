@@ -2,6 +2,10 @@
 #include <iostream>
 using namespace std;
 
+// Enumeration to represent the possible destinations
+enum class Country { Egypt, Kuwait, Saudia_Arabia, UAE };
+
+
 // Define a struct for an airplane
 struct Airplane {
     string departure;   // The departure country or airport
@@ -43,17 +47,20 @@ struct Airplane {
     Airplane* getNext();
     
      // Setter for WaitTime
-     void setWaitTime(const std::string& waittime);
+     void setWaitTime( std::string waittime);
     
     //Getter for WaitTime
-     string getWaitTime() const;
+     string getWaitTime();
         
     // Setter for ArrivalTime
-    void setArrivalTime(const std::string& arrivaltime);
+    void setArrivalTime( std::string arrivaltime);
     
     //Getter ArrivalTime
-    string getArrivalTime() const;
+    string getArrivalTime();
 
     // Getter function for the airplane's urgent status
     bool getUrgent();
+
+    //Prints Airplane data
+    void print();
 };
