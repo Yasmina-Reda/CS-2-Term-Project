@@ -1,10 +1,10 @@
-
-
+//#ifndef AIRPORT_H
+#define AIRPORT_H
 #include <iostream>
-#include <string>
+#include <cstring>
 #include "DEQ.h"
-#include <random>
-#include "Airplane.h"
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 // Enumeration to represent the possible weather conditions
@@ -22,7 +22,7 @@ public:
     ~Airport();
 
     // Calculates the landing time for a given airplane based on the weather and number of passengers
-    int calculateLandingTime(Airplane* airplane, Weather weather);
+    int calculateLandingTime(Airplane* airplane, string weather);
 
     // Displays the current time at the airport
     void displayTime();
@@ -37,8 +37,8 @@ public:
    string generateWeather();
 
 private:
-    int airplaneCount;
+    int AirplaneCount;
     DEQ  deque;
-    Weather weather;
+    string weather;
     
 };

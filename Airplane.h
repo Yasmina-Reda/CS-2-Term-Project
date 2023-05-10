@@ -1,9 +1,12 @@
 #include <string>
+#include <ctime>
+#include <cstdlib>
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 // Enumeration to represent the possible destinations
-enum class Country { Egypt, Kuwait, Saudia_Arabia, UAE };
+//enum  class Country{Egypt, Kuwait, Saudia_Arabia, UAE };
 
 
 // Define a struct for an airplane
@@ -13,7 +16,7 @@ struct Airplane {
     string id;          // The unique identifier for the airplane
     string waittime;    // The estimated wait time before landing
     string arrivaltime; // The estimated arrival time
-    Airplane* next;     // A pointer to the next airplane in a linked list
+    Airplane* next=NULL;     // A pointer to the next airplane in a linked list
     bool urgent;        // Whether the airplane has an urgent status
 
     // Default constructor
@@ -23,13 +26,13 @@ struct Airplane {
     ~Airplane();
 
     // Setter function for the airplane's ID
-    void setId(std::string id);
+    void setId(string id);
 
     // Getter function for the airplane's ID
     string getId();
 
     // Setter function for the airplane's departure country or airport
-    void setDeparture(std::string country);
+    void setDeparture(string country);
 
     // Getter function for the airplane's departure country or airport
     string getDeparture();
@@ -47,16 +50,17 @@ struct Airplane {
     Airplane* getNext();
     
      // Setter for WaitTime
-     void setWaitTime( std::string waittime);
+     void setWaitTime( string waittime);
     
     //Getter for WaitTime
      string getWaitTime();
         
     // Setter for ArrivalTime
-    void setArrivalTime( std::string arrivaltime);
+    void setArrivalTime( string arrivaltime);
     
     //Getter ArrivalTime
     string getArrivalTime();
+    
 
     // Getter function for the airplane's urgent status
     bool getUrgent();

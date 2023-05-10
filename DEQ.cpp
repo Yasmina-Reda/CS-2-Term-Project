@@ -1,6 +1,6 @@
 #include "DEQ.h"
 
-DEQ::DEQisEmpty(){
+bool DEQ::DEQisEmpty(){
 	if (length==0)
 		return true;
 }
@@ -17,10 +17,10 @@ void DEQ::addFront(Airplane* airplane){
 	length++;	
 }
 
-Airplane DEQ::removeFront(){
+Airplane* DEQ::removeFront(){ //?
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
-	int temp=front;
+	Airplane* temp=front;
 	front=front->next;
 	delete front;
 	length--;
@@ -38,18 +38,18 @@ void DEQ::addRear(Airplane* airplane){
 	length++;
 }
 
-Airplane DEQ::removeRear(){
+Airplane* DEQ::removeRear(){ //?
 	Airplane* temp;
 	Airplane* temp1;
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
-	else if(head->next==NULL){
-		head=NULL;
-		delete head;
+	else if(front->next==NULL){
+		front=NULL;
+		delete front;
 		length--;
 	}
 	else{
-		temp=head;
+		temp=front;
 		while(temp->next!=NULL){
 			temp1=temp;
 			temp=temp->next;
@@ -59,4 +59,18 @@ Airplane DEQ::removeRear(){
 		length--;
 	}
 	return temp1;
+}
+
+Airplane* DEQ::viewFront(){
+	if(DEQisEmpty())
+		cout << "No airplanes currently" << endl;
+	else
+		return front; //-> airplane name ? 
+}
+
+Airplane* DEQ::viewRear(){
+	if(DEQisEmpty())
+		cout << "No airplanes currently" << endl;
+	else
+		return rear; //-> airplane name ? 
 }
