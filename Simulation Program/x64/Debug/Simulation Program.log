@@ -1,6 +1,44 @@
 ﻿  Simulation Program.cpp
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(57,20): warning C4553: '==': result of expression not used; did you intend '='?
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(6): warning C4715: 'DEQ::DEQisEmpty': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(61): error C4703: potentially uninitialized local pointer variable 'temp1' used
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(76): warning C4715: 'DEQ::viewRear': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(69): warning C4715: 'DEQ::viewFront': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(3,11): error C2084: function 'Airplane::Airplane(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(3): message : see previous definition of '{ctor}'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(7,12): error C2084: function 'Airplane::~Airplane(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(7): message : see previous definition of '{dtor}'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(11,16): error C2084: function 'void Airplane::setId(std::string)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(11): message : see previous definition of 'setId'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(15,23): error C2084: function 'std::string Airplane::getId(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(15): message : see previous definition of 'getId'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(19,16): error C2084: function 'void Airplane::setDeparture(std::string)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(19): message : see previous definition of 'setDeparture'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(23,23): error C2084: function 'std::string Airplane::getDeparture(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(23): message : see previous definition of 'getDeparture'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(27,16): error C2084: function 'void Airplane::setPassNum(int)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(27): message : see previous definition of 'setPassNum'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(31,15): error C2084: function 'int Airplane::getPassNum(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(31): message : see previous definition of 'getPassNum'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(35,16): error C2084: function 'void Airplane::setNext(Airplane *)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(35): message : see previous definition of 'setNext'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(39,21): error C2084: function 'Airplane *Airplane::getNext(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(39): message : see previous definition of 'getNext'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(43,16): error C2084: function 'bool Airplane::getUrgent(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(43): message : see previous definition of 'getUrgent'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(3,11): error C2084: function 'bool DEQ::DEQisEmpty(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(3): message : see previous definition of 'DEQisEmpty'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(9,11): error C2084: function 'void DEQ::addFront(Airplane *)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(9): message : see previous definition of 'addFront'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(10,6): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(21,16): error C2084: function 'Airplane *DEQ::removeFront(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(21): message : see previous definition of 'removeFront'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(22,5): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(31,11): error C2084: function 'void DEQ::addRear(Airplane *)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(31): message : see previous definition of 'addRear'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(32,6): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(42,16): error C2084: function 'Airplane *DEQ::removeRear(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(42): message : see previous definition of 'removeRear'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(46,5): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(72,16): error C2084: function 'Airplane *DEQ::viewFront(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(72): message : see previous definition of 'viewFront'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(73,5): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(79,16): error C2084: function 'Airplane *DEQ::viewRear(void)' already has a body
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(79): message : see previous definition of 'viewRear'
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(80,5): error C2065: 'DEQisEmpty': undeclared identifier
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(68,11): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data

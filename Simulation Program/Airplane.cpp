@@ -44,6 +44,7 @@ bool Airplane::getUrgent() {
     //added unsigned int
 	srand((unsigned int)time(NULL));
 
+    //Y! what do you wanna do here?
 	urgent=rand()%1;
     return this->urgent;
 }

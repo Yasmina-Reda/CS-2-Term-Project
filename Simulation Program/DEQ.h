@@ -13,9 +13,11 @@ class DEQ{
 		int length;
 	public:
 		DEQ(){front=rear=NULL; length=0;} //
-		~DEQ();
+		~DEQ() {};
+		//please add definition for the getlength function
 		int getDEQLength();
 		bool DEQisEmpty();//
+		//Y! I think ypu should remove the isFull like we discussed
 		bool DEQisFull();//
 		void addRear(Airplane* node);//anyone of front/rear
 		void addFront(Airplane* node);//

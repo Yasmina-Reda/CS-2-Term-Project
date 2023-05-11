@@ -3,6 +3,7 @@
 bool DEQ::DEQisEmpty(){
 	if (length == 0)
 		return true;
+	else return false;
 }
 
 void DEQ::addFront(Airplane* airplane){
@@ -39,26 +40,33 @@ void DEQ::addRear(Airplane* airplane){
 }
 
 Airplane* DEQ::removeRear(){ //?
+	//Y! this is going to create an issue because we want to return a pointer to an airplane, but we also want to delete it
 	Airplane* temp;
 	Airplane* temp1;
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
 	else if(front->getNext() == NULL) {
-		front=NULL;
+		temp = front;
+		//Y! after deleting front temp should be pointing at nothing
 		delete front;
+		front = NULL;
 		length--;
+		return temp;
 	}
 	else{
 		temp=front;
+		temp1 = temp;
 		while(temp->getNext() != NULL) {
 			temp1=temp;
 			temp=temp->getNext();
 		}
-		temp1->getNext() == NULL;
+		//this line will nullify temp
+		temp1->setNext(NULL);
 		delete temp;
 		length--;
+		return temp1;
 	}
-	return temp1;
+
 }
 
 Airplane* DEQ::viewFront(){

@@ -14,6 +14,8 @@ class Airplane{
 
 // Define a struct for an airplane
 //Y: changed it to a class
+
+//Y! let's add a static variable here
 private:
     string departure;   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane

@@ -56,12 +56,13 @@ Airplane* Airport::Randomgenerate() {
   
     int id = (rand () % 100) + 1;
     int passNum = rand() % 200 + 1;
-   string arrivalTime = "to_string(rand() % 24) : to_string(rand() % 60)";
+    //Y! don't set arrival time here. It's set in simulation
+    //string arrivalTime = "to_string(rand() % 24) : to_string(rand() % 60)";
     Airplane* a = new Airplane();
     a->setId("to_string(id)");
     
     a->setPassNum(passNum);
-    a->setArrivalTime(arrivalTime);
+    //a->setArrivalTime(arrivalTime);
     return a;
 }
 
