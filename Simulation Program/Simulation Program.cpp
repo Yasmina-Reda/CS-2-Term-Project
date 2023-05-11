@@ -26,7 +26,7 @@ void validateTime(string&);
 bool arrived(DEQ, string);
 
 //test if a plane can be serviced
-bool canService(DEQ, int, int&, int, int&, int&);
+bool canService(DEQ, Airplane *, int, int&, int, int&, int&);
 
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
 bool exitLine(DEQ, int, int&, int&, Airplane*);
@@ -45,7 +45,6 @@ int main()
 	//get landing time from Airport but initialize for now
 	int landingTime = 10;
 
-	int arrivalTime;
 
 	int arrivalAVG = generateArrivalAverage();
 	double probablityArrival = 1 / arrivalAVG;
@@ -105,12 +104,11 @@ bool Arrived(DEQ line, string time, Airplane *plane, int probability)
 
 
 
-bool canService(DEQ line, int time, int& timeTillService, int landingTime, int& waitTotal, int& jobCount)
+bool canService(DEQ line, Airplane* plane, int time, int& timeTillService, int landingTime, int& waitTotal, int& jobCount)
 {
 
 	if (timeTillService == 0 && !line.DEQisEmpty())
 	{
-		Airplane* plane;
 		bool exited = exitLine(line, time, waitTotal, jobCount, plane);
 
 		if (exited)

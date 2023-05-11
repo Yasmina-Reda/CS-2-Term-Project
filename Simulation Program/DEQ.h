@@ -2,6 +2,8 @@
 #pragma once
 #include <iostream>
 #include "Airplane.h"
+//Y: added the .cpp file for the compiler to run
+#include "Airplane.cpp"
 using namespace std;
 
 class DEQ{

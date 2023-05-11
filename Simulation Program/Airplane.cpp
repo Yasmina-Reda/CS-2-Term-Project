@@ -41,7 +41,8 @@ Airplane* Airplane::getNext() {
 }
 
 bool Airplane::getUrgent() {
-	srand(time(NULL));
+    //added unsigned int
+	srand((unsigned int)time(NULL));
 
 	urgent=rand()%1;
     return this->urgent;

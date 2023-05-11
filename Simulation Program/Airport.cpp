@@ -67,7 +67,8 @@ Airplane* Airport::Randomgenerate() {
 
 // Generates a random weather condition
 string Airport::generateWeather() {
-    srand(time(NULL));
+    //Y: added (unsigned int) because the compiler said so ._.
+    srand((unsigned int)time(NULL));
     int weatherNum = rand() % 3;
     string weather;
     switch (weatherNum) {

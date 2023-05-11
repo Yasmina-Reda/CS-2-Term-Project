@@ -2,7 +2,9 @@
 #pragma once
 #include <iostream>
 #include <cstring>
+//Y: added the .cpp file for the compiler to run
 #include "DEQ.h"
+#include "DEQ.cpp"
 #include <ctime>
 #include <cstdlib>
 using namespace std;

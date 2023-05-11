@@ -1,17 +1,17 @@
 #include "DEQ.h"
 
 bool DEQ::DEQisEmpty(){
-	if (length==0)
+	if (length == 0)
 		return true;
 }
 
 void DEQ::addFront(Airplane* airplane){
 	if (DEQisEmpty()){
 		front=rear=airplane;
-		airplane->next=NULL;
+		airplane->setNext(NULL);
 	}
 	else {
-		airplane->next=front;
+		airplane->setNext(front);
 		front=airplane;
 	}
 	length++;	
@@ -21,7 +21,7 @@ Airplane* DEQ::removeFront(){ //?
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
 	Airplane* temp=front;
-	front=front->next;
+	front = front->getNext();
 	delete front;
 	length--;
 	return temp; //return last item 
@@ -32,7 +32,7 @@ void DEQ::addRear(Airplane* airplane){
 		front=rear=airplane;
 	}
 	else {
-		rear->next=airplane;
+		rear->setNext(airplane);
 		rear=airplane;
 	}
 	length++;
@@ -43,18 +43,18 @@ Airplane* DEQ::removeRear(){ //?
 	Airplane* temp1;
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
-	else if(front->next==NULL){
+	else if(front->getNext() == NULL) {
 		front=NULL;
 		delete front;
 		length--;
 	}
 	else{
 		temp=front;
-		while(temp->next!=NULL){
+		while(temp->getNext() != NULL) {
 			temp1=temp;
-			temp=temp->next;
+			temp=temp->getNext();
 		}
-		temp1->next==NULL;
+		temp1->getNext() == NULL;
 		delete temp;
 		length--;
 	}
