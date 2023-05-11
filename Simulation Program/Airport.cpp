@@ -3,7 +3,8 @@
 // Constructor
 Airport::Airport() {
     AirplaneCount = 0;
-    DEQ = DEQ();
+    //fixed the expression from "DEQ=DEQ()" to "deque=DEQ()"
+    deque = DEQ();
     weather = generateWeather();
    
 }

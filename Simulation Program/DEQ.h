@@ -1,3 +1,5 @@
+//Y: Added #pragma once to avoid class redefinition
+#pragma once
 #include <iostream>
 #include "Airplane.h"
 using namespace std;

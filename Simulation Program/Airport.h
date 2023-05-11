@@ -1,5 +1,5 @@
-//#ifndef AIRPORT_H
-#define AIRPORT_H
+//Y: Added #pragma once to avoid class redefinition
+#pragma once
 #include <iostream>
 #include <cstring>
 #include "DEQ.h"

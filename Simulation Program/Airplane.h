@@ -1,3 +1,5 @@
+//Y: Added #pragma once to avoid class redefinition
+#pragma once
 #include <string>
 #include <ctime>
 #include <cstdlib>

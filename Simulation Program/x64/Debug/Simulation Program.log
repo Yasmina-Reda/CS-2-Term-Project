@@ -1,0 +1,4 @@
+﻿  Simulation Program.cpp
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Airport.cpp(70,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(48,6): warning C4101: 'arrivalTime': unreferenced local variable
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(114): error C4700: uninitialized local variable 'plane' used

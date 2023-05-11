@@ -1,8 +1,10 @@
 
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include<ctime>
 #include "Airport.h"
+#include "Airport.cpp"
 using namespace std;
 
 //returns a random value for arrival time, range varies depending on time of the day
@@ -21,13 +23,13 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-bool arrived(DEQ, int);
+bool arrived(DEQ, string);
 
 //test if a plane can be serviced
 bool canService(DEQ, int, int&, int, int&, int&);
 
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
-bool exitLine(DEQ, int, int&, int&, Airplane&);
+bool exitLine(DEQ, int, int&, int&, Airplane*);
 
 int main()
 {
@@ -80,7 +82,7 @@ float generateRandFloat()
 }
 
 
-bool Arrived(DEQ line, int time, Airplane& plane, int probability)
+bool Arrived(DEQ line, string time, Airplane *plane, int probability)
 {
 	double R = generateRandFloat();
 	if (R < probability)
@@ -91,14 +93,13 @@ bool Arrived(DEQ line, int time, Airplane& plane, int probability)
 		}
 
 		else {
-			plane.setarrivaltime(time);
+			plane->setArrivalTime(time);
 			line.addRear(plane);
 			return true;
 		}
 
-		return false;
-
 	}
+	return false;
 }
 
 
@@ -109,33 +110,33 @@ bool canService(DEQ line, int time, int& timeTillService, int landingTime, int& 
 
 	if (timeTillService == 0 && !line.DEQisEmpty())
 	{
-		Airplane plane;
-		bool exited = exitLine(line, time, plane, waitTotal, jobTotal, plane);
+		Airplane* plane;
+		bool exited = exitLine(line, time, waitTotal, jobCount, plane);
 
 		if (exited)
 		{
-			cout << "Airplane " << plane.id << " started service at " << time << ". Wait time = " << plane.waitTime;
-			timeTillService = landingTime;
+			cout << "Airplane " << plane->getId() << " started service at " << time << ". Wait time = " << plane->getWaitTime();
+			timeTillService = landingTime; return true;
 		}
 	}
 
-
+	return false;
 }
 
 
 
-bool exitLine(DEQ line, int time, int& waitTotal, int& jobCount, Airplane& plane)
+bool exitLine(DEQ line, int time, int& waitTotal, int& jobCount, Airplane* plane)
 {
 	if (line.DEQisEmpty())
 	{
 		cout << "Report: Line is Empty";
-		return false
+		return false;
 	}
 	else
 	{
 		plane = line.removeFront();
-		plane.waittime = time - plane.arrivaltime;
-		waitTotal += plane.waittime;
+		plane->setWaitTime(writeTime(time - readTime(plane->getArrivalTime())));
+		waitTotal += readTime(plane->getWaitTime());
 		jobCount++;
 		return true;
 	}
