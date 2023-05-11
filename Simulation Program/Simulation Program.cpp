@@ -3,12 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include<ctime>
-#include "Airport.h"
 #include "Airport.cpp"
-#include "Airplane.h"
-#include "Airplane.cpp"
-#include "DEQ.h"
-#include "DEQ.cpp"
 using namespace std;
 
 
