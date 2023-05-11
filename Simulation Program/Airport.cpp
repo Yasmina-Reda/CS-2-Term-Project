@@ -6,7 +6,7 @@ Airport::Airport() {
     //fixed the expression from "DEQ=DEQ()" to "deque=DEQ()"
     deque = DEQ();
     weather = generateWeather();
-   
+
 }
 
 // Destructor

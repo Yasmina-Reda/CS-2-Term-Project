@@ -48,9 +48,8 @@ int main()
 	int arrivalAVG = generateArrivalAverage();
 	double probablityArrival = 1 / arrivalAVG;
 	Airplane* temp;
-
 	//please enter simulation time in hh:mm
-	cout << "Please Enter Simulation Duration in hh:mm format"; cin >> stime;
+	cout << "Please Enter Simulation Duration in hh:mm format: "; cin >> stime;
 	validateTime(stime);
 
 	//convert to minutes
@@ -135,7 +134,7 @@ Airplane* Arrived(double probability)
 		Airplane* plane = MAIN.Randomgenerate();
 
 			//sets arrival time with the current clockTime
-			plane->setArrivalTime(writeTime(clockTime));
+			//plane->setArrivalTime(writeTime(clockTime));
 
 			//adds plane to deque
 			line.addRear(plane);
@@ -160,7 +159,7 @@ bool canService(Airplane* plane)
 		{
 			//outputs plane info and time
 			//Y! can use Airplane.print() here
-			cout << "Airplane " << plane->getId() << " started service at " << clockTime << ". Wait time = " << plane->getWaitTime();
+			//cout << "Airplane " << plane->getId() << " started service at " << clockTime << ". Wait time = " << plane->getWaitTime();
 			timeTillService = landingTime;
 			return true;
 		}
@@ -180,9 +179,9 @@ bool exitLine(Airplane* plane)
 	}
 	else
 	{
-		plane = line.removeFront();
-		plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
-		waitTotal += readTime(plane->getWaitTime());
+		plane = &line.removeFront();
+		//plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
+		//waitTotal += readTime(plane->getWaitTime());
 		jobCount++;
 		return true;
 	}
