@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include<ctime>
+#include "Airport.h"
 #include "Airport.cpp"
 using namespace std;
 
@@ -30,7 +31,7 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-bool Arrived(int, Airplane*);
+Airplane* Arrived(double);
 
 //test if a plane can be serviced
 bool canService(Airplane*);
@@ -60,7 +61,7 @@ int main()
 
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		Arrived(probablityArrival, temp);
+		temp=Arrived(probablityArrival);
 		canService(temp);
 		if (timeTillService > 0) timeTillService--;
 	}
@@ -123,7 +124,7 @@ void validateTime(string& time)
 }
 
 
-bool Arrived(double probability, Airplane* plane)
+Airplane* Arrived(double probability)
 {
 	double R = generateRandFloat();
 
@@ -131,17 +132,16 @@ bool Arrived(double probability, Airplane* plane)
 	if (R < probability)
 	{
 			//generates a new plane if arrived;
-			plane = MAIN.Randomgenerate();
+		Airplane* plane = MAIN.Randomgenerate();
 
 			//sets arrival time with the current clockTime
 			plane->setArrivalTime(writeTime(clockTime));
 
 			//adds plane to deque
 			line.addRear(plane);
-			return true;
+			return plane;
 	}
 
-	return false;
 }
 
 
