@@ -2,9 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include<ctime>
-#include "Airplane.h"
 #include "Airport.h"
-#include "DEQ.h"
 using namespace std;
 
 //returns a random value for arrival time, range varies depending on time of the day
@@ -93,7 +91,7 @@ bool Arrived(DEQ line, int time, Airplane& plane, int probability)
 		}
 
 		else {
-			plane.arrivaltime = time;
+			plane.setarrivaltime(time);
 			line.addRear(plane);
 			return true;
 		}

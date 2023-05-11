@@ -1,8 +1,9 @@
 #include "Airport.h"
+
 // Constructor
 Airport::Airport() {
     AirplaneCount = 0;
-    deque = DEQ();
+    DEQ = DEQ();
     weather = generateWeather();
    
 }
