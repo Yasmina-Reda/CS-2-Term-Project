@@ -44,7 +44,7 @@ Airplane DEQ::removeFront(){ //?
 	}
 }
 
-void DEQ::addRear(Airplane* airplane){ //fix this with rear pointer 
+void DEQ::addRear(Airplane* airplane){ 
 	if (airplane->getUrgent()==true)
 	{
 		addFront(airplane);
