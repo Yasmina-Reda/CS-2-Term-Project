@@ -31,13 +31,13 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-Airplane* Arrived(double);
+bool Arrived(double);
 
 //test if a plane can be serviced
-bool canService(Airplane*&);
+bool canService();
 
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
-bool exitLine(Airplane*&);
+void exitLine();
 
 
 
@@ -46,7 +46,7 @@ int main()
 {
 
 	int arrivalAVG = generateArrivalAverage();
-	double probablityArrival = 1 / arrivalAVG;
+	double probablityArrival = float(1) / arrivalAVG;
 	Airplane* temp;
 	//please enter simulation time in hh:mm
 	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; cin >> stime;
@@ -60,10 +60,14 @@ int main()
 
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		temp=Arrived(probablityArrival);
-		canService(temp);
+		if(Arrived(probablityArrival)) 
+			canService();
 		if (timeTillService > 0) timeTillService--;
 	}
+
+	cout << "\nSimulation complete\n";
+
+	for (int i = 0;i < 30;i++) cout << "---";
 
 	if (jobCount != 0)
 	{
@@ -127,49 +131,42 @@ void validateTime(string& time)
 }
 
 
-Airplane* Arrived(double probability)
+bool Arrived(double probability)
 {
 	double R = generateRandFloat();
 
 	//if the probability allows for plane arrival
-	//if (R < probability)
-	
-			//generates a new plane if arrived;
-			Airplane* plane = MAIN.Randomgenerate();
+	if (R < probability)
+	{
+		//generates a new plane if arrived;
+		Airplane* plane = MAIN.Randomgenerate();
 
-			//sets arrival time with the current clockTime
-			plane->setArrivalTime(writeTime(clockTime));
+		//sets arrival time with the current clockTime
+		plane->setArrivalTime(writeTime(clockTime));
 
-			//adds plane to deque
-			line.addRear(plane);
-
-			cout << "A plane has arrived\n";
-			return plane;
-	
+		//adds plane to deque
+		line.addRear(plane);
+		return true;
+	}
+	else return false;	
 
 }
 
 
 
 
-bool canService(Airplane*& plane)
+bool canService()
 {
 	//if the conditions are met for carrying out the service
-	if (timeTillService == 0)
+	if (timeTillService == 0 && !line.DEQisEmpty())
 	{
-		//tests if there is a plane to be exited
-		bool exited = exitLine(plane);
+		//Airplane* plane;
+		 exitLine();
 
-		//if the plane can be exited
-		if (exited)
-		{
 			//outputs plane info and time
-			//Y! can use Airplane.print() here
-			plane->print();
-			cout << "\nstarted service at " << writeTime(clockTime) << ". Wait time = " << plane->getWaitTime()<<"\n";
-			timeTillService = landingTime;
+			//Y! problem with print
+			//plane->print();
 			return true;
-		}
 	}
 	//else returns false
 	return false;
@@ -177,24 +174,16 @@ bool canService(Airplane*& plane)
 
 
 
-bool exitline(Airplane*& plane)
+void exitLine()
 {
-	if (line.DEQisEmpty())
-	{
-		//useless here cout << "report: line is empty";
-		return false;
-	}
-	else
-	{
-		Airplane a;
-		a = line.removeFront();
-		plane=&a;
-		plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
-		waitTotal += readTime(plane->getWaitTime());
+		Airplane plane;
+		plane = line.removeFront();
+		plane.setWaitTime(writeTime(clockTime - readTime(plane.getArrivalTime())));
+		waitTotal += readTime(plane.getWaitTime());
 		jobCount++;
-		return true;
-	}
-
+		plane.print();
+		cout << "started service at " << writeTime(clockTime) << ". Wait time = " << plane.getWaitTime() << "\n";
+		timeTillService = landingTime;
 }
 
 //Airplane* exitLine()

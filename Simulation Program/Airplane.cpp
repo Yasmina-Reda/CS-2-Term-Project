@@ -98,11 +98,11 @@ int Airplane::getTotalAirplanes() {
     return totalcount;
 }
 void Airplane::print() {
-    cout << "Airplane ID: " << getId() << endl;
+    cout << "\nAirplane ID: " << getId() << endl;
     //Y! commented for now
     //cout << "Departure: " << getDeparture() << endl;
     cout << "Number of Passengers: " << getPassNum() << endl;
     //cout << "Wait time before landing: " << getWaitTime() << endl;
-  // cout << "Estimated Arrival time: " << getArrivalTime() << endl;
+  cout << "Arrival time: " << getArrivalTime() << endl;
 }
 
