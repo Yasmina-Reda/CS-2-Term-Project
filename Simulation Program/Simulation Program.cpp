@@ -179,7 +179,9 @@ bool exitLine(Airplane* plane)
 	}
 	else
 	{
-		plane = &line.removeFront();
+		Airplane a;
+		a = line.removeFront();
+		plane=&a;
 		//plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
 		//waitTotal += readTime(plane->getWaitTime());
 		jobCount++;

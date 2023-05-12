@@ -1,5 +1,7 @@
 #include "DEQ.h"
 
+int DEQ::getDEQLength() { return length;}
+
 bool DEQ::DEQisEmpty(){
 	if (length == 0)
 		return true;
@@ -10,6 +12,18 @@ void DEQ::addFront(Airplane* airplane){
 	if (DEQisEmpty()){
 		front=rear=airplane;
 		airplane->setNext(NULL);
+	}
+	else if (airplane->getUrgent()==true)
+	{
+		Airplane* temp=front;
+		int i=0;
+		while (temp->getNext()->getUrgent()==true)
+		{
+			temp=temp->getNext();
+		}
+		airplane->setNext(temp->getNext());
+		temp->setNext(airplane);
+		if (i==1) front=airplane;
 	}
 	else {
 		airplane->setNext(front);
@@ -30,8 +44,12 @@ Airplane DEQ::removeFront(){ //?
 	}
 }
 
-void DEQ::addRear(Airplane* airplane){
-	if (DEQisEmpty()){
+void DEQ::addRear(Airplane* airplane){ //fix this with rear pointer 
+	if (airplane->getUrgent()==true)
+	{
+		addFront(airplane);
+	}
+	else if (DEQisEmpty()){
 		front=rear=airplane;
 	}
 	else {
@@ -41,7 +59,7 @@ void DEQ::addRear(Airplane* airplane){
 	length++;
 }
 
-Airplane DEQ::removeRear(){ //?
+Airplane DEQ::removeRear(){ //fix this with rear pointer
 	//Y! this is going to create an issue because we want to return a pointer to an airplane, but we also want to delete it
 	Airplane* temp;
 	Airplane* temp1;
