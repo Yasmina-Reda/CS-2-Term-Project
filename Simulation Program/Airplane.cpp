@@ -104,5 +104,6 @@ void Airplane::print() {
     cout << "Number of Passengers: " << getPassNum() << endl;
     //cout << "Wait time before landing: " << getWaitTime() << endl;
   cout << "Arrival time: " << getArrivalTime() << endl;
+  if (urgent) cout << "Urgent. Moved to priority queue\n";
 }
 

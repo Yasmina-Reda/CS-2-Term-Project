@@ -1,7 +1,9 @@
 ﻿  Simulation Program.cpp
 D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(50,12): warning C4101: 'temp': unreferenced local variable
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(97,9): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(137,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(45): warning C4715: 'DEQ::removeFront': not all control paths return a value
 D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(98): warning C4715: 'DEQ::viewFront': not all control paths return a value
 D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(105): warning C4715: 'DEQ::viewRear': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(45): warning C4715: 'DEQ::removeFront': not all control paths return a value
 D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(91): warning C4715: 'DEQ::removeRear': not all control paths return a value
   Simulation Program.vcxproj -> D:\University\Spring 2023\CS 2\Project\Simulation Program\x64\Debug\Simulation Program.exe

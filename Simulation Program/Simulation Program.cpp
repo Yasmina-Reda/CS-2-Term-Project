@@ -46,7 +46,7 @@ int main()
 {
 
 	int arrivalAVG = generateArrivalAverage();
-	double probablityArrival = float(1) / arrivalAVG;
+	int probablityArrival = /*float(1) /*/ arrivalAVG;
 	Airplane* temp;
 	//please enter simulation time in hh:mm
 	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; cin >> stime;
@@ -60,8 +60,8 @@ int main()
 
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		if(Arrived(probablityArrival)) 
-			canService();
+		Arrived(probablityArrival);
+		canService();
 		if (timeTillService > 0) timeTillService--;
 	}
 
@@ -92,7 +92,8 @@ int generateArrivalAverage()
 float generateRandFloat()
 {
 	srand((unsigned int)time(NULL));
-	float T = rand() / float(32767);
+	//float T = rand() / float(32767);
+	int T = rand() % 5 + 1;
 	return T;
 }
 
@@ -133,7 +134,7 @@ void validateTime(string& time)
 
 bool Arrived(double probability)
 {
-	double R = generateRandFloat();
+	int R = generateRandFloat();
 
 	//if the probability allows for plane arrival
 	if (R < probability)
@@ -148,7 +149,11 @@ bool Arrived(double probability)
 		line.addRear(plane);
 		return true;
 	}
-	else return false;	
+	else
+	{
+		cout << "no\n";
+		return false;
+	}
 
 }
 
