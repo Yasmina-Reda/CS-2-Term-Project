@@ -42,20 +42,20 @@ void Airplane::setNext(Airplane* n) {
 Airplane* Airplane::getNext() {
     return this->next;
 }
-    void setWaitTime(string waittime)
+    void Airplane::setWaitTime(string waittime)
     {
     this->waittime = waittime;
 }
 
-string getWaitTime() {
+string Airplane::getWaitTime() {
     return waittime;
 }
 
-void setArrivalTime(string arrivaltime) {
+void Airplane::setArrivalTime(string arrivaltime) {
     this->arrivaltime = arrivaltime;
 }
 
-string getArrivalTime() {
+string Airplane::getArrivalTime() {
     return arrivaltime;
 }
 
@@ -76,13 +76,12 @@ bool Airplane::getUrgent() {
 }
 int Airplane::getTotalAirplanes() {
     return totalcount;
-	
 }
-void print() {
+void Airplane::print() {
     cout << "Airplane ID: " << getId() << endl;
     cout << "Departure: " << getDeparture() << endl;
     cout << "Number of Passengers: " << getPassNum() << endl;
-    cout << "Wait time before landing: " << getWaitTime() << endl;
-    cout << "Estimated Arrival time: " << getArrivalTime() << endl;
+    //cout << "Wait time before landing: " << getWaitTime() << endl;
+  // cout << "Estimated Arrival time: " << getArrivalTime() << endl;
 }
 
