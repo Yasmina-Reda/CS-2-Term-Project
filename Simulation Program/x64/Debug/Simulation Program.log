@@ -1,6 +1,7 @@
 ﻿  Simulation Program.cpp
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(77): warning C4715: 'DEQ::viewFront': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(84): warning C4715: 'DEQ::viewRear': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(70): warning C4715: 'DEQ::removeRear': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(144): warning C4715: 'Arrived': not all control paths return a value
-  Simulation Program.vcxproj -> D:\University\Spring 2023\CS 2\Project\Simulation Program\x64\Debug\Simulation Program.exe
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(98): warning C4715: 'DEQ::viewFront': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(45): warning C4715: 'DEQ::removeFront': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(91): warning C4715: 'DEQ::removeRear': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(105): warning C4715: 'DEQ::viewRear': not all control paths return a value
+Simulation Program.obj : error LNK2019: unresolved external symbol "bool __cdecl exitLine(class Airplane * &)" (?exitLine@@YA_NAEAPEAVAirplane@@@Z) referenced in function "bool __cdecl canService(class Airplane * &)" (?canService@@YA_NAEAPEAVAirplane@@@Z)
+D:\University\Spring 2023\CS 2\Project\Simulation Program\x64\Debug\Simulation Program.exe : fatal error LNK1120: 1 unresolved externals

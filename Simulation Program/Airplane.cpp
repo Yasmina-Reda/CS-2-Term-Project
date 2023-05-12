@@ -4,6 +4,13 @@ int Airplane::totalcount = 0;
 
 Airplane::Airplane() {
     // Default constructor
+    //generate and set id here with ASCII
+    //generate and set departure;
+    /*
+    string departure;   
+    int passengerNum;   
+    string id;
+    */
     totalcount++;
 }
 
@@ -24,6 +31,19 @@ void Airplane::setDeparture(std::string country) {
 }
 
 std::string Airplane::getDeparture() {
+    //Y! do the same as for weather
+    /* switch (weatherNum) {
+    case 0:
+        weather = "Sunny";
+        break;
+    case 1:
+        weather = "Rainy";
+        break;
+    case 2:
+        weather = "Foggy";
+        break;
+    }
+    return weather;*/
     return this->departure;
 }
 
@@ -79,7 +99,8 @@ int Airplane::getTotalAirplanes() {
 }
 void Airplane::print() {
     cout << "Airplane ID: " << getId() << endl;
-    cout << "Departure: " << getDeparture() << endl;
+    //Y! commented for now
+    //cout << "Departure: " << getDeparture() << endl;
     cout << "Number of Passengers: " << getPassNum() << endl;
     //cout << "Wait time before landing: " << getWaitTime() << endl;
   // cout << "Estimated Arrival time: " << getArrivalTime() << endl;
