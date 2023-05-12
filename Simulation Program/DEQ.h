@@ -23,5 +23,5 @@ class DEQ{
 		Airplane removeRear();//
 		Airplane* viewFront();
 		Airplane* viewRear();
-		
+		void viewQueue(Airplane* node);
 };

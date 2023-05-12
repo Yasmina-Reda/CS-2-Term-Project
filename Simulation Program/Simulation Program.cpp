@@ -31,13 +31,13 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-Airplane* Arrived(double);
+bool Arrived(double);
 
 //test if a plane can be serviced
-bool canService(Airplane*);
+bool canService();
 
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
-bool exitLine(Airplane*);
+void exitLine();
 
 
 
@@ -46,10 +46,10 @@ int main()
 {
 
 	int arrivalAVG = generateArrivalAverage();
-	double probablityArrival = 1 / arrivalAVG;
+	int probablityArrival = /*float(1) /*/ arrivalAVG;
 	Airplane* temp;
 	//please enter simulation time in hh:mm
-	cout << "Please Enter Simulation Duration in hh:mm format: "; cin >> stime;
+	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; cin >> stime;
 	validateTime(stime);
 
 	//convert to minutes
@@ -60,13 +60,21 @@ int main()
 
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		temp=Arrived(probablityArrival);
-		canService(temp);
+		Arrived(probablityArrival);
+		canService();
 		if (timeTillService > 0) timeTillService--;
 	}
 
-	averageTime = waitTotal / jobCount;
-	cout << "\nAverage wait time is " << writeTime(averageTime);
+	cout << "\nSimulation complete\n";
+
+	for (int i = 0;i < 30;i++) cout << "---";
+
+	if (jobCount != 0)
+	{
+		averageTime = waitTotal / jobCount;
+		cout << "\nAverage wait time is " << writeTime(averageTime);
+	}
+	else cout << "\nNo jobs have been processed\n";
 
 
 	return 0;
@@ -76,15 +84,16 @@ int generateArrivalAverage()
 {
 	//Y! if prime time increase, else decrease
 	//but for now just set it
-	srand((unsigned int)time(NULL));
+	srand(clockTime);
 	int T = rand() % 5 + 1;
 	return T;
 }
 
 float generateRandFloat()
 {
-	srand((unsigned int)time(NULL));
-	float T = rand() / float(32767);
+	srand(clockTime);
+	//float T = rand() / float(32767);
+	int T = rand() % 5 + 1;
 	return T;
 }
 
@@ -123,22 +132,27 @@ void validateTime(string& time)
 }
 
 
-Airplane* Arrived(double probability)
+bool Arrived(double probability)
 {
-	double R = generateRandFloat();
+	int R = generateRandFloat();
 
 	//if the probability allows for plane arrival
 	if (R < probability)
 	{
-			//generates a new plane if arrived;
+		//generates a new plane if arrived;
 		Airplane* plane = MAIN.Randomgenerate();
 
-			//sets arrival time with the current clockTime
-			//plane->setArrivalTime(writeTime(clockTime));
+		//sets arrival time with the current clockTime
+		plane->setArrivalTime(writeTime(clockTime));
 
-			//adds plane to deque
-			line.addRear(plane);
-			return plane;
+		//adds plane to deque
+		line.addRear(plane);
+		return true;
+	}
+	else
+	{
+		cout << "no\n";
+		return false;
 	}
 
 }
@@ -146,23 +160,18 @@ Airplane* Arrived(double probability)
 
 
 
-bool canService(Airplane* plane)
+bool canService()
 {
 	//if the conditions are met for carrying out the service
-	if (timeTillService == 0)
+	if (timeTillService == 0 && !line.DEQisEmpty())
 	{
-		//tests if there is a plane to be exited
-		bool exited = exitLine(plane);
+		//Airplane* plane;
+		 exitLine();
 
-		//if the plane can be exited
-		if (exited)
-		{
 			//outputs plane info and time
-			//Y! can use Airplane.print() here
-			//cout << "Airplane " << plane->getId() << " started service at " << clockTime << ". Wait time = " << plane->getWaitTime();
-			timeTillService = landingTime;
+			//Y! problem with print
+			//plane->print();
 			return true;
-		}
 	}
 	//else returns false
 	return false;
@@ -170,22 +179,32 @@ bool canService(Airplane* plane)
 
 
 
-bool exitLine(Airplane* plane)
+void exitLine()
 {
-	if (line.DEQisEmpty())
-	{
-		//useless here cout << "Report: Line is Empty";
-		return false;
-	}
-	else
-	{
-		Airplane a;
-		a = line.removeFront();
-		plane=&a;
-		//plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
-		//waitTotal += readTime(plane->getWaitTime());
+		Airplane plane;
+		plane = line.removeFront();
+		plane.setWaitTime(writeTime(clockTime - readTime(plane.getArrivalTime())));
+		waitTotal += readTime(plane.getWaitTime());
 		jobCount++;
-		return true;
-	}
-
+		plane.print();
+		cout << "started service at " << writeTime(clockTime) << ". Wait time = " << plane.getWaitTime() << "\n";
+		timeTillService = landingTime;
 }
+
+//Airplane* exitLine()
+//{
+//	if (line.DEQisEmpty())
+//	{
+//		cout << "Report: Line is Empty";
+//		return nullptr;
+//	}
+//	else
+//	{
+//		Airplane a= line.removeFront();
+//		Airplane* plane = &a;
+//		plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
+//		waitTotal += readTime(plane->getWaitTime());
+//		jobCount++;
+//		return plane;
+//	}
+//}

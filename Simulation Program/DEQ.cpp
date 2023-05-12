@@ -59,7 +59,7 @@ void DEQ::addRear(Airplane* airplane){
 	length++;
 }
 
-Airplane DEQ::removeRear(){ //fix this with rear pointer
+Airplane DEQ::removeRear(){ //make a while loop until next is rear
 	//Y! this is going to create an issue because we want to return a pointer to an airplane, but we also want to delete it
 	Airplane* temp;
 	Airplane* temp1;
@@ -102,4 +102,13 @@ Airplane* DEQ::viewRear(){
 		cout << "No airplanes currently" << endl;
 	else
 		return rear; //-> airplane name ? 
+}
+
+void DEQ::viewQueue(Airplane* a){
+	cout << "\n\nBeginning of Queue" << endl;
+	while (a!=NULL){
+		a->print();
+		a=a->getNext(); 
+	}
+	cout << "End of Queue\n\n" << endl;
 }

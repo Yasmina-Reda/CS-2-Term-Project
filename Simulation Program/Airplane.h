@@ -8,7 +8,7 @@
 using namespace std;
 
 //Enumeration to represent the possible destinations
-//Enum  class Country{Egypt, Kuwait, Saudia_Arabia, UAE };
+enum  Country {Egypt, Kuwait, Saudia_Arabia, UAE };
 
 class Airplane{
 
@@ -17,7 +17,7 @@ class Airplane{
 
 //Y! let's add a static variable here instead of total job count
 private:
-    string departure;   // The departure country or airport
+    string departure="";   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane
     string id;          // The unique identifier for the airplane
     string waittime;    // The estimated wait time before landing

@@ -52,6 +52,7 @@ void Airport::displayTime() {
 }*/
 
 // Generates circumstances that affect an airplane's landing time (i.e. weather and passenger count)
+//Y! rermove and move over to constructor
 Airplane* Airport::Randomgenerate() {
   
     int id = (rand () % 100) + 1;
@@ -59,7 +60,7 @@ Airplane* Airport::Randomgenerate() {
     //Y! don't set arrival time here. It's set in simulation
     //string arrivalTime = "to_string(rand() % 24) : to_string(rand() % 60)";
     Airplane* a = new Airplane();
-    a->setId("to_string(id)");
+    a->setId(to_string(id));
     
     a->setPassNum(passNum);
     //a->setArrivalTime(arrivalTime);
