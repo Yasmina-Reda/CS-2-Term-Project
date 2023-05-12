@@ -1,8 +1,8 @@
-
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <cstdlib>
-#include<ctime>
+#include <ctime>
 #include "Airport.h"
 #include "Airport.cpp"
 using namespace std;
