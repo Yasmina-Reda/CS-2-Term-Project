@@ -1,7 +1,10 @@
 #include "Airplane.h"
 
+int Airplane::totalcount = 0;
+
 Airplane::Airplane() {
     // Default constructor
+    totalcount++;
 }
 
 Airplane::~Airplane() {
@@ -45,6 +48,14 @@ bool Airplane::getUrgent() {
 	srand((unsigned int)time(NULL));
 
     //Y! what do you wanna do here?
-	urgent=rand()%1;
+    //it's gonna be an equal probability of urgent or non-urgent
+    //urgent shouldn't be that many
+    //so maybe one in every ten
+
+	int u=rand()%10;
+    if (u == 1) urgent = true; 
     return this->urgent;
+}
+int Airplane::getTotalAirplanes() {
+    return totalcount;
 }

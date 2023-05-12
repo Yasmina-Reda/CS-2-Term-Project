@@ -7,15 +7,15 @@
 #include <cstring>
 using namespace std;
 
-// Enumeration to represent the possible destinations
-//enum  class Country{Egypt, Kuwait, Saudia_Arabia, UAE };
+//Enumeration to represent the possible destinations
+//Enum  class Country{Egypt, Kuwait, Saudia_Arabia, UAE };
 
 class Airplane{
 
 // Define a struct for an airplane
 //Y: changed it to a class
 
-//Y! let's add a static variable here
+//Y! let's add a static variable here instead of total job count
 private:
     string departure;   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane
@@ -23,7 +23,8 @@ private:
     string waittime;    // The estimated wait time before landing
     string arrivaltime; // The estimated arrival time
     Airplane* next=NULL;     // A pointer to the next airplane in a linked list
-    bool urgent;        // Whether the airplane has an urgent status
+    bool urgent = false;        // Whether the airplane has an urgent status
+    static int totalcount;
 public:
     // Default constructor
     Airplane();
@@ -70,6 +71,8 @@ public:
 
     // Getter function for the airplane's urgent status
     bool getUrgent();
+
+    static int getTotalAirplanes();
 
     //Prints Airplane data
     void print();
