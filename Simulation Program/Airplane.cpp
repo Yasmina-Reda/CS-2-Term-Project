@@ -2,7 +2,7 @@
 
 int Airplane::totalcount = 0;
 
-Airplane::Airplane() {
+Airplane::Airplane(int t=0) {
     // Default constructor
     //generate and set id here with ASCII
     //generate and set departure;
@@ -12,7 +12,12 @@ Airplane::Airplane() {
     string id;
     */
     //play with ascii
-    id = to_string((rand() % 100) + 1);
+    srand(time(0)+t);
+    //id+= "B" + char(rand() % 25 + 65) + to_string(rand() % 899 + 100);
+    id += "B";
+    id += char(rand() % 25 + 65);
+    id += to_string(rand() % 899 + 100);
+    this->t = t;
     passengerNum = rand() % 200 + 1;
     int u = rand() % 10;
     if (u == 1) urgent = true;
@@ -88,7 +93,7 @@ string Airplane::getArrivalTime() {
 
 bool Airplane::getUrgent() {
     //added unsigned int
-	srand((unsigned int)time(NULL));
+	srand(time(NULL)+t);
 
     //Y! what do you wanna do here?
     //it's gonna be an equal probability of urgent or non-urgent

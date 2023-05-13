@@ -50,7 +50,7 @@ int main()
 {
 	//please enter simulation time in hh:mm
 	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; //cin >> stime;
-	stime = "01:00";
+	stime = "11:00";
 	validateTime(stime);
 
 	cout << "\n\nSimulation Start\n";
@@ -95,7 +95,7 @@ int generateArrivalAverage()
 	//but for now just set it
 
 	//only works properly if we call srand in the function itself
-	srand(clockTime);
+	srand(clockTime+time(NULL));
 	int T = rand() % 8 + 1;
 	return T;
 }
@@ -105,8 +105,11 @@ int generateArrivalAverage()
 float generateRandFloat()
 {
 	//only works properly if we call srand in the function itself
-	srand(clockTime);
-	float T = rand() / float(rand()%50+150);
+	srand(clockTime + time(NULL));
+
+	//Y! fix probability based on simTime
+	float T = rand() / float(rand()%35000);
+	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 
 	return T;
@@ -168,7 +171,7 @@ bool Arrived()
 	if((R < probability))
 	{
 		//generates a new plane if arrived;
-		Airplane* plane=new Airplane();
+		Airplane* plane=new Airplane(clockTime);
 
 		//sets arrival time with the current clockTime
 		plane->setArrivalTime(writeTime(clockTime));
@@ -176,12 +179,13 @@ bool Arrived()
 		//adds plane to deque
 		line.addRear(plane);
 		jobTotal++;
-		cout << "\nyes at " << writeTime(clockTime);
+		//cout << "\nyes at " << writeTime(clockTime);
+		cout << "\n-->Airplane " << plane->getId() << " arrived\n";
 		return true;
 	}
 	else
 	{
-		cout << "\nno";
+		//cout << "\nno";
 		return false;
 	}
 
@@ -206,7 +210,6 @@ bool canService()
 	//else returns false
 	return false;
 }
-
 
 
 void exitLine()

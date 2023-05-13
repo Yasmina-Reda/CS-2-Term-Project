@@ -19,15 +19,16 @@ class Airplane{
 private:
     string departure="";   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane
-    string id;          // The unique identifier for the airplane
+    string id="";          // The unique identifier for the airplane
     string waittime;    // The estimated wait time before landing
     string arrivaltime; // The estimated arrival time
+    int t;
     Airplane* next=NULL;     // A pointer to the next airplane in a linked list
     bool urgent = false;        // Whether the airplane has an urgent status
     static int totalcount;
 public:
     // Default constructor
-    Airplane();
+    Airplane(int);
 
     // Destructor
     ~Airplane();
