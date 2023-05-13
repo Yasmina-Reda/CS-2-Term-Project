@@ -1,19 +1,8 @@
 Simulation Start
 ------------------------------------------------------------------------------------------
 
-
-Airplane ID: BV880
-Departure: Kuwait
-Number of Passengers: 165
-Arrival Time; 06:01
-Status: Not Urgent
-Started Service at 06:01
-Wait Time Before Landing: 00:00
-Estimated Service Duration: 00:16
-
-
 ------------------------------------------------------------------------------------------
 simulation complete
 
-Average wait time is 00:00. Airplanes not processed: 4
+No jobs have been processed
 

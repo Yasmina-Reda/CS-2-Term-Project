@@ -8,33 +8,28 @@
 using namespace std;
 
 //Enumeration to represent the possible destinations
-enum  Country { Egypt, Kuwait,Saudia_Arabia, UAE };
+enum  Country { Egypt, Kuwait, Saudia_Arabia, UAE };
 
-class Airplane{
+class Airplane {
 
-tructor// Define a struct for an airplane
-//Y: changed it to a class
+    // Define a struct for an airplane
+    //Y: changed it to a class
 
-//Y! let's add a static variable here instead of total job count
+    //Y! let's add a static variable here instead of total job count
 private:
     Country departure;   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane
-    string id="";          // The unique identifier for the airplane
+    string id = "";          // The unique identifier for the airplane
     string waittime;    // The estimated wait time before landing
     string arrivaltime; // The estimated arrival time
     int serviceTime;
     int t;
-    Airplane* next=NULL;     // A pointer to the next airplane in a linked list
+    Airplane* next = NULL;     // A pointer to the next airplane in a linked list
     bool urgent = false;        // Whether the airplane has an urgent status
     static int totalcount;
 public:
-<<<<<<< HEAD
-    // Default cons
-    Airplane();
-=======
     // Default constructor
     Airplane(int);
->>>>>>> 5ed36d942dc2f884b59fa2972e0a0f9e4523368b
 
     // Destructor
     ~Airplane();
@@ -58,27 +53,27 @@ public:
     int getPassNum();
 
     // Setter function for the pointer to the next airplane in a linked list
-    void setNext(Airplane* n);
+    void setNext(Airplane*);
 
     // Getter function for the pointer to the next airplane in a linked list
     Airplane* getNext();
-    
-     // Setter for WaitTime
-     void setWaitTime( string waittime);
-    
+
+    // Setter for WaitTime
+    void setWaitTime(string waittime);
+
     //Getter for WaitTime
-     string getWaitTime();
-        
+    string getWaitTime();
+
     // Setter for ArrivalTime
-    void setArrivalTime( string arrivaltime);
-    
+    void setArrivalTime(string arrivaltime);
+
     //Getter ArrivalTime
     string getArrivalTime();
 
     void setServiceTime(int);
 
     int getServiceTime();
-    
+
 
     // Getter function for the airplane's urgent status
     bool getUrgent();
