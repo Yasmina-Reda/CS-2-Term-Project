@@ -13,7 +13,19 @@ class DEQ{
 		int length;
 	public:
 		DEQ(){front=rear=NULL; length=0;} //
-		~DEQ() {};
+		~DEQ() {
+			if (!DEQisEmpty())
+			{
+				Airplane* prev = front;
+				while (front != NULL)
+				{
+					prev = front;
+					front = front->getNext();
+					delete prev;
+
+				}
+			}
+		}
 		//please add definition for the getlength function
 		int getDEQLength();
 		bool DEQisEmpty();

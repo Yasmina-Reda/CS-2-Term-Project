@@ -16,14 +16,31 @@ void DEQ::addFront(Airplane* airplane){
 	else if (airplane->getUrgent()==true)
 	{
 		Airplane* temp=front;
-		int i=0;
-		while (temp->getNext()->getUrgent()==true)
+		//temp->getNext() here is null. if the queue is all urgent or there is only 1 airplane
+		if (temp->getNext() == NULL)
 		{
-			temp=temp->getNext();
+			if (temp->getUrgent() == true)
+			{
+				temp->setNext(airplane);
+				airplane->setNext(NULL);
+				rear = airplane;
+			}
+			else {
+				airplane->setNext(front);
+				front = airplane;
+				rear = temp;
+			}
 		}
-		airplane->setNext(temp->getNext());
-		temp->setNext(airplane);
-		if (i==1) front=airplane;
+		else {
+			while (temp->getNext()->getUrgent() == true)
+			{
+				temp = temp->getNext();
+
+			}
+			airplane->setNext(temp->getNext());
+			if (airplane->getNext() == NULL) rear = airplane;
+			temp->setNext(airplane);
+		}
 	}
 	else {
 		airplane->setNext(front);
@@ -35,10 +52,20 @@ void DEQ::addFront(Airplane* airplane){
 Airplane DEQ::removeFront(){ //?
 	if(DEQisEmpty())
 		cout << "No airplanes currently" << endl;
-	else {
+	else if (front->getNext()==NULL)
+	{
 		Airplane temp = *front;
-		front = front->getNext();
 		delete front;
+		front = NULL;
+		rear = NULL;
+		length--;
+		return temp; //return last item 
+	}
+	else {
+		Airplane *second, temp = *front;
+		second = front->getNext();
+		delete front;
+		front = second;
 		length--;
 		return temp; //return last item 
 	}
@@ -51,12 +78,13 @@ void DEQ::addRear(Airplane* airplane){
 	}
 	else if (DEQisEmpty()){
 		front=rear=airplane;
+		length++;
 	}
 	else {
 		rear->setNext(airplane);
 		rear=airplane;
+		length++;
 	}
-	length++;
 }
 
 Airplane DEQ::removeRear(){ //make a while loop until next is rear
