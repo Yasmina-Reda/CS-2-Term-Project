@@ -5,6 +5,8 @@
 #include <ctime>
 #include <random>
 #include <fstream>
+#include <chrono>
+#include <thread>
 #include "DEQ.h"
 #include "DEQ.cpp"
 using namespace std;
@@ -62,9 +64,10 @@ void writeToLog(Airplane);
 int main()
 {
 	cout << "Welcome to Airport Simulator\n\nDay Begins at " << DayBegin << "\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
-	//cin >> stime;
-	stime = "00:05";
+	cin >> stime;
 	validateTime(stime);
+
+	char real = 'N'; cout << "For Real Time Simulation, Enter the Character 'Y': "; cin >> real;
 
 	ofstream clear("Log.txt");
 
@@ -88,23 +91,54 @@ int main()
 	generateWeather();
 	if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
 
-	for (clockTime; clockTime < simTime;clockTime++)
-	{
-		timeofDay++;
-		//if we reached 24:00
-		if (timeofDay == 1440)
+	if (real=='Y') {
+
+		for (clockTime; clockTime < simTime;clockTime++)
 		{
-			timeofDay = 0;
-			simTime -= clockTime;
-			clockTime = 0;
+			timeofDay++;
+			//if we reached 24:00
+			if (timeofDay == 1440)
+			{
+				timeofDay = 0;
+				simTime -= clockTime;
+				clockTime = 0;
+			}
+
+			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			if (timeofDay % 360 == 0) generateWeather();
+
+			Arrived(probability);
+			canService();
+			if (timeTillService > 0) timeTillService--;
+			cout << "Current Time: " << writeTime(timeofDay) << "\t Runway Status: ";
+			if (timeTillService == 0) cout << "Free"; else cout << "Occupied";
+			cout << "\r";
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+		}
+	}
+
+	else {
+
+		for (clockTime; clockTime < simTime;clockTime++)
+		{
+			timeofDay++;
+			//if we reached 24:00
+			if (timeofDay == 1440)
+			{
+				timeofDay = 0;
+				simTime -= clockTime;
+				clockTime = 0;
+			}
+
+			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			if (timeofDay % 360 == 0) generateWeather();
+
+			Arrived(probability);
+			canService();
+			if (timeTillService > 0) timeTillService--;
 		}
 
-		if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
-		if (timeofDay % 360 == 0) generateWeather();
-
-		Arrived(probability);
-		canService();
-		if (timeTillService > 0) timeTillService--;
 	}
 
 	cout << endl;
@@ -139,11 +173,11 @@ int generateArrivalAverage()
 	//but for now just set it
 	int T;
 	//only works properly if we call srand in the function itself
-	if (Prime) T = 4;
+	if (Prime) T = 5;
 
-	else if (Low) T = 16;
+	else if (Low) T = 20;
 
-	else T = 8;
+	else T = 10;
 
 	return T;
 }
@@ -156,7 +190,7 @@ float generateRandFloat()
 	srand(time(NULL) + timeofDay);
 
 	//Y! fix probability based on simTime
-	float T = rand() / float(32767);
+	float T = rand() / float(rand()%32767);
 	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 
