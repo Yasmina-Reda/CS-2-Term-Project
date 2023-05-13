@@ -129,6 +129,7 @@ int main()
 	write.close();
 
 	return 0;
+
 }
 
 int generateArrivalAverage()
