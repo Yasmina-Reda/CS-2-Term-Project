@@ -1,8 +1,41 @@
 Simulation Start
 ------------------------------------------------------------------------------------------
 
+
+Airplane ID: BM955
+Departure: Saudia_Arabia
+Number of Passengers: 28
+Arrival Time; 06:12
+Status: Not Urgent
+Started Service at 06:12
+Wait Time Before Landing: 00:00
+Estimated Service Duration: 00:02
+
+
+
+Airplane ID: BC662
+Departure: Kuwait
+Number of Passengers: 190
+Arrival Time; 06:18
+Status: Not Urgent
+Started Service at 06:18
+Wait Time Before Landing: 00:00
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BJ852
+Departure: UAE
+Number of Passengers: 24
+Arrival Time; 06:23
+Status: Urgent
+Started Service at 06:37
+Wait Time Before Landing: 00:14
+Estimated Service Duration: 00:02
+
+
 ------------------------------------------------------------------------------------------
 simulation complete
 
-No jobs have been processed
+Average wait time is 00:04. Airplanes not processed: 0
 

@@ -18,6 +18,8 @@ int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTot
 enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
 ofstream write("Log.txt", ios::app);
 
+ofstream test("result1.csv", std::ios::out | std::ios::app);
+
 //Prototypes
 
 //returns a random value for arrival time, range varies depending on time of the day
@@ -63,6 +65,10 @@ void writeToLog(Airplane);
 
 int main()
 {
+	test << "Max=, "<<"=MAX(A2" << endl;
+	test << "MIN=, " << "=Min(A2" << endl;
+
+
 	cout << "Welcome to Airport Simulator\n\nDay Begins at " << DayBegin << "\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
 	cin >> stime;
 	validateTime(stime);
@@ -111,8 +117,7 @@ int main()
 			canService();
 			if (timeTillService > 0) timeTillService--;
 			cout << "Current Time: " << writeTime(timeofDay) << "\t Runway Status: ";
-			if (timeTillService == 0) cout << "Free"; else cout << "Occupied";
-			cout << "\r";
+			if (timeTillService == 0) cout << "Free     \r"; else cout << "Occupied\r";
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
 		}
@@ -163,6 +168,7 @@ int main()
 	}
 
 	write.close();
+	test.close();
 
 	return 0;
 }
@@ -171,14 +177,16 @@ int generateArrivalAverage()
 {
 	//Y! if prime time increase, else decrease
 	//but for now just set it
-	int T;
+	int T; srand(time(NULL) + timeofDay);
 	//only works properly if we call srand in the function itself
-	if (Prime) T = 5;
+
+	/*if (Prime) T = 5;
 
 	else if (Low) T = 20;
 
-	else T = 10;
+	else T = 10;*/
 
+	T = rand() % 8 + 1;
 	return T;
 }
 
@@ -190,7 +198,8 @@ float generateRandFloat()
 	srand(time(NULL) + timeofDay);
 
 	//Y! fix probability based on simTime
-	float T = rand() / float(rand()%32767);
+	float T = rand() / float(rand() % 35000);
+	/*float T = rand() / float(10000);*/
 	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 
@@ -232,6 +241,16 @@ string writeTime(int t)
 
 void validateTime(string& time)
 {
+	//to make sure minutes are not more than 59
+	if (time.length() == 4 && time.at(2) > (5 +'0'))
+	{
+		cout << "\nInvalid Minutes. Please re-enter: "; cin >> time;
+	}
+	else if (time.length() == 5 && time.at(3) > (5 + '0'))
+	{
+		cout << "\nInvalid Minutes. Please re-enter: "; cin >> time;
+	}
+
 	//to make sure string entered is in h:mm or hh:mm format 
 	while (!(time.length() == 4 && time.at(1) == ':') && time.length() != 5)
 	{
@@ -247,6 +266,11 @@ void Arrived(float probability)
 	//srand(clockTime);
 
 	float R = generateRandFloat();
+	probability = float(1) / generateArrivalAverage();
+
+
+	test << R <<", "<<probability << endl;
+
 
 	if ((R < probability))
 	{
