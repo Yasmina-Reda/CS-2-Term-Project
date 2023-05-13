@@ -156,7 +156,7 @@ float generateRandFloat()
 	srand(time(NULL) + timeofDay);
 
 	//Y! fix probability based on simTime
-	float T = rand() / float(rand() % 36767 + 10000);
+	float T = rand() / float(32767);
 	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 

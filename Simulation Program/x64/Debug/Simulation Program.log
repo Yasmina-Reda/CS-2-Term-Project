@@ -7,8 +7,8 @@ D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp
 D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(273,50): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 D:\University\Spring 2023\CS 2\Project\Simulation Program\Simulation Program.cpp(274,50): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 D:\University\Spring 2023\CS 2\Project\Simulation Program\Airplane.cpp(62): warning C4715: 'Airplane::getDeparture': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(72): warning C4715: 'DEQ::removeFront': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(126): warning C4715: 'DEQ::viewFront': not all control paths return a value
 D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(133): warning C4715: 'DEQ::viewRear': not all control paths return a value
 D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(119): warning C4715: 'DEQ::removeRear': not all control paths return a value
-D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(126): warning C4715: 'DEQ::viewFront': not all control paths return a value
+D:\University\Spring 2023\CS 2\Project\Simulation Program\DEQ.cpp(72): warning C4715: 'DEQ::removeFront': not all control paths return a value
   Simulation Program.vcxproj -> D:\University\Spring 2023\CS 2\Project\Simulation Program\x64\Debug\Simulation Program.exe
