@@ -10,12 +10,7 @@
 using namespace std;
 
 // Enumeration to represent the possible weather conditions
-enum class Weather {
-    Sunny,
-    Rainy,
-    Windy,
-    Stormy
-};
+
 
 // Class to represent an airport
 class Airport {

@@ -8,7 +8,7 @@
 using namespace std;
 
 //Enumeration to represent the possible destinations
-enum  Country {Egypt, Kuwait, Saudia_Arabia, UAE };
+enum  Country { Egypt, Kuwait,Saudia_Arabia, UAE };
 
 class Airplane{
 
@@ -17,11 +17,12 @@ class Airplane{
 
 //Y! let's add a static variable here instead of total job count
 private:
-    string departure="";   // The departure country or airport
+    Country departure;   // The departure country or airport
     int passengerNum;   // The number of passengers on the airplane
     string id="";          // The unique identifier for the airplane
     string waittime;    // The estimated wait time before landing
     string arrivaltime; // The estimated arrival time
+    int serviceTime;
     int t;
     Airplane* next=NULL;     // A pointer to the next airplane in a linked list
     bool urgent = false;        // Whether the airplane has an urgent status
@@ -68,6 +69,10 @@ public:
     
     //Getter ArrivalTime
     string getArrivalTime();
+
+    void setServiceTime(int);
+
+    int getServiceTime();
     
 
     // Getter function for the airplane's urgent status

@@ -4,14 +4,15 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
-#include "Airport.h"
-#include "Airport.cpp"
+#include "DEQ.h"
+#include "DEQ.cpp"
 using namespace std;
 
 
 //global variables
-Airport MAIN; string stime; DEQ line;
-int simTime, clockTime=0, timeTillService=0, jobCount=0, jobTotal=0, waitTotal=0, landingTime;
+string stime, DayBegin = "6:00"; bool Prime, Low; DEQ line;
+int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTotal = 0, waitTotal = 0, landingTime;
+enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
 
 
 //Prototypes
@@ -35,7 +36,7 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-bool Arrived();
+bool Arrived(float);
 
 //test if a plane can be serviced
 bool canService();
@@ -43,14 +44,23 @@ bool canService();
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
 void exitLine();
 
+// Calculates the landing time of an airplane based on weather and number of passengers
+int calculateLandingTime(Airplane*);
 
+// Displays the time and weather of the airport
+void displayWeather();
 
+// Generates a random weather condition
+void generateWeather();
+
+//Prime or Low Time based on current time of day
+void timeStatus();
 
 int main()
 {
-	//please enter simulation time in hh:mm
-	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; //cin >> stime;
-	stime = "11:00";
+	cout<<"Welcome to Airport Simulator\n\nDay Begins at "<<DayBegin<<"\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
+	//cin >> stime;
+	stime = "24:00";
 	validateTime(stime);
 
 	cout << "\n\nSimulation Start\n";
@@ -63,10 +73,23 @@ int main()
 	//Y! get landing time from Airport but initialize for now
 	landingTime = 10; int averageTime;
 
+	float probability = float(1) / generateArrivalAverage();
+
+	timeofDay = readTime(DayBegin);
+	generateWeather();
+
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		
-		Arrived();
+		timeofDay++;
+		if (timeofDay == 1440)
+		{
+			timeofDay = 0;
+			simTime -= clockTime;
+			clockTime = 0;
+		}
+		timeStatus(); 
+		if (timeofDay % 360 == 0) generateWeather();
+		Arrived(probability);
 		canService();
 		if (timeTillService > 0) timeTillService--;
 	}
@@ -93,10 +116,14 @@ int generateArrivalAverage()
 {
 	//Y! if prime time increase, else decrease
 	//but for now just set it
-
+	int T;
 	//only works properly if we call srand in the function itself
-	srand(clockTime+time(NULL));
-	int T = rand() % 8 + 1;
+	if (Prime) T = 4;
+
+	else if (Low) T = 8;
+
+	else T = 16;
+
 	return T;
 }
 
@@ -105,10 +132,10 @@ int generateArrivalAverage()
 float generateRandFloat()
 {
 	//only works properly if we call srand in the function itself
-	srand(clockTime + time(NULL));
+	srand(time(NULL) + timeofDay);
 
 	//Y! fix probability based on simTime
-	float T = rand() / float(rand()%35000);
+	float T = rand() / float(rand()%36767+10000);
 	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 
@@ -158,7 +185,7 @@ void validateTime(string& time)
 }
 
 
-bool Arrived()
+bool Arrived(float probability)
 {
 
 	//if the probability allows for plane arrival
@@ -166,21 +193,22 @@ bool Arrived()
 	//srand(clockTime);
 
 	float R = generateRandFloat();
-	float probability = float(1) / generateArrivalAverage();
 
 	if((R < probability))
 	{
 		//generates a new plane if arrived;
-		Airplane* plane=new Airplane(clockTime);
+		Airplane* plane=new Airplane(timeofDay);
 
-		//sets arrival time with the current clockTime
-		plane->setArrivalTime(writeTime(clockTime));
+		//sets arrival time with the current time: DayBegin+ClockTime
+		plane->setArrivalTime(writeTime(timeofDay));
 
+		plane->setServiceTime(calculateLandingTime(plane));
 		//adds plane to deque
 		line.addRear(plane);
 		jobTotal++;
 		//cout << "\nyes at " << writeTime(clockTime);
 		cout << "\n-->Airplane " << plane->getId() << " arrived\n";
+		if(plane->getUrgent()) cout << "Urgent Airplane->Moved to priority queue\n";
 		return true;
 	}
 	else
@@ -216,12 +244,16 @@ void exitLine()
 {
 		Airplane plane;
 		plane = line.removeFront();
-		plane.setWaitTime(writeTime(clockTime - readTime(plane.getArrivalTime())));
+		int wt;
+		if (timeofDay < readTime(plane.getArrivalTime())) wt = 1440 + timeofDay- readTime(plane.getArrivalTime());
+		else wt=timeofDay - readTime(plane.getArrivalTime());
+
+		plane.setWaitTime(writeTime(wt));
 		waitTotal += readTime(plane.getWaitTime());
 		jobCount++;
 		plane.print();
-		cout << "started service at " << writeTime(clockTime) << ". Wait time = " << plane.getWaitTime() << "\n";
-		timeTillService = landingTime;
+		cout << "started service at " << writeTime(timeofDay) << ". Wait time = " << plane.getWaitTime() << "\n";
+		timeTillService = line.viewFront()->getServiceTime();
 }
 
 //Airplane* exitLine()
@@ -241,3 +273,73 @@ void exitLine()
 //		return plane;
 //	}
 //}
+
+int calculateLandingTime(Airplane* plane) {
+	int passNum = plane->getPassNum();
+	return 10 * (passNum / float(100)) * weatherFactor;
+}
+
+
+void generateWeather() {
+	
+		srand(time(NULL) + timeofDay);
+		int r = rand() % 6;
+		switch (r) {
+		case 0:
+		case 1:
+		case 2: currentWeather = Sunny; weatherFactor = 1; break;
+		case 3: currentWeather = Rainy; weatherFactor = 1.25; break;
+		case 4: currentWeather = Windy; weatherFactor = 1.75; break;
+		case 5: currentWeather = Stormy; weatherFactor = 2; 
+		}
+		displayWeather();
+		return;
+}
+
+
+void displayWeather() {
+
+	//Y! add comment about weather condition and how each of them will affect landing time
+	switch (currentWeather) {
+	case 0: cout << "\n\nWeather Forecast Update: Sunny Conditions. Estimated Service is Normal\n\n"; return;
+	case 1: cout << "\n\nWeather Forecast Update: Rainy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
+	case 2: cout << "\n\nWeather Forecast Update: Windy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
+	case 3: cout << "\n\nWeather Forecast Update: Stormy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
+	}
+
+}
+
+void timeStatus() {
+
+	//at 12 pm
+	if (timeofDay == 720)
+	{
+		Prime = true;
+		cout << "\nWarning: Entering Prime Time. Frequency of Airplane Arrival is Expected to Increase\n";
+		generateArrivalAverage();
+	}
+
+	//at 4 pm
+	else if (timeofDay == 960)
+	{
+		Prime = false;
+		cout <<"\nWarning: Prime Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
+		generateArrivalAverage();
+	}
+
+	//at 2 am
+	else if (timeofDay == 120)
+	{
+		Low = true;
+		cout << "\nWarning: Entering Low Time. Frequency of Airplane Arrival is Expected to Decrease\n";
+		generateArrivalAverage();
+	}
+
+	//at 6 am
+	else if (timeofDay == 360)
+	{
+		Low = false;
+		cout << "\nWarning: Low Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
+		generateArrivalAverage();
+	}
+}

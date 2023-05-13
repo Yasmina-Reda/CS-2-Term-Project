@@ -12,26 +12,10 @@ Airport::Airport() {
 // Destructor
 Airport::~Airport() {}
 
-// Calculates the landing time of an airplane based on weather and number of passengers
-int Airport::calculateLandingTime(Airplane* a, string weather) {
-    int passNum = a->getPassNum();
-    int baseTime = (passNum * 5) + 10;
-    int weatherFactor = 1;
-    if (weather == "Rainy") {
-        weatherFactor = 2;
-    }
-    else if (weather == "Foggy") {
-        weatherFactor = 3;
-    }
-    return baseTime * weatherFactor;
-}
 
-// Displays the time and weather of the airport
-void Airport::displayWeather() {
-    
-    //Y! add comment about weather condition and how each of them will affect landing time
-    cout << "Current weather: " << weather << endl;
-}
+
+
+
 
 // Inserts an airplane into the deque based on its urgency and arrival time
 /*void Airport::insertDEQ(Airplane* a) {
@@ -69,22 +53,4 @@ void Airport::displayWeather() {
 //    return a;
 //}
 
-// Generates a random weather condition
-string Airport::generateWeather() {
-    //Y: added (unsigned int) because the compiler said so ._.
-    srand((unsigned int)time(NULL));
-    int weatherNum = rand() % 3;
-    string weather;
-    switch (weatherNum) {
-    case 0:
-        weather = "Sunny";
-        break;
-    case 1:
-        weather = "Rainy";
-        break;
-    case 2:
-        weather = "Foggy";
-        break;
-    }
-    return weather;
-}
+

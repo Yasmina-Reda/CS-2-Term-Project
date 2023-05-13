@@ -19,47 +19,51 @@ Airplane::Airplane(int t=0) {
     id += to_string(rand() % 899 + 100);
     this->t = t;
     passengerNum = rand() % 200 + 1;
-    int u = rand() % 10;
-    if (u == 1) urgent = true;
-    totalcount++;
+    int urg = rand() % 10; if (urg == 1) urgent = true;
+    totalcount++; 
+    int r = rand() % 4;
+    switch (r)
+    {
+    case 0: departure = Egypt; break;
+    case 1: departure = Kuwait; break;
+    case 2: departure = Saudia_Arabia; break;
+    case 3: departure = UAE ; break;
+        
+    }
+
 }
 
 Airplane::~Airplane() {
     // Destructor
 }
 
-void Airplane::setId(std::string id) {
-    this->id = id;
-}
+//void Airplane::setId(std::string id) {
+//    this->id = id;
+//}
 
 std::string Airplane::getId() {
     return this->id;
 }
 
-void Airplane::setDeparture(std::string country) {
-    this->departure = country;
-}
+//void Airplane::setDeparture(std::string country) {
+//    this->departure = country;
+//}
 
 std::string Airplane::getDeparture() {
-    //Y! do the same as for weather
-    /* switch (weatherNum) {
-    case 0:
-        weather = "Sunny";
-        break;
-    case 1:
-        weather = "Rainy";
-        break;
-    case 2:
-        weather = "Foggy";
-        break;
+
+    switch (departure)
+    {
+    case 0: return "Egypt"; 
+    case 1: return "Kuwait"; 
+    case 2: return "Saudia_Arabia"; break;
+    case 3: return "UAE";
     }
-    return weather;*/
-    return this->departure;
+
 }
 
-void Airplane::setPassNum(int w) {
-    this->passengerNum = w;
-}
+//void Airplane::setPassNum(int w) {
+//    this->passengerNum = w;
+//}
 
 int Airplane::getPassNum() {
     return this->passengerNum;
@@ -102,16 +106,26 @@ bool Airplane::getUrgent() {
 
     return /*this->*/ urgent;
 }
+
+void Airplane::setServiceTime(int t)
+{
+    serviceTime = t;
+}
+
+int Airplane::getServiceTime()
+{
+    return serviceTime;
+}
+
 int Airplane::getTotalAirplanes() {
     return totalcount;
 }
 void Airplane::print() {
     cout << "\nAirplane ID: " << getId() << endl;
     //Y! commented for now
-    //cout << "Departure: " << getDeparture() << endl;
+    cout << "Departure: " << getDeparture() << endl;
     cout << "Number of Passengers: " << getPassNum() << endl;
     //cout << "Wait time before landing: " << getWaitTime() << endl;
   cout << "Arrival time: " << getArrivalTime() << endl;
-  if (urgent) cout << "Urgent Airplane->Moved to priority queue\n";
 }
 
