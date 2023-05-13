@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
+#include <fstream>
 #include "DEQ.h"
 #include "DEQ.cpp"
 using namespace std;
@@ -13,7 +14,7 @@ using namespace std;
 string stime, DayBegin = "6:00"; bool Prime, Low; DEQ line;
 int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTotal = 0, waitTotal = 0, landingTime;
 enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
-
+ofstream write("Log.txt", ios::app);
 
 //Prototypes
 
@@ -54,18 +55,26 @@ void displayWeather();
 void generateWeather();
 
 //Prime or Low Time based on current time of day
-void timeStatus();
+bool changeTimeStatus();
+
+void writeToLog(Airplane);
 
 int main()
 {
 	cout<<"Welcome to Airport Simulator\n\nDay Begins at "<<DayBegin<<"\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
 	//cin >> stime;
-	stime = "24:00";
+	stime = "00:05";
 	validateTime(stime);
+
+	ofstream clear("Log.txt");
 
 	cout << "\n\nSimulation Start\n";
 	for (int i = 0;i < 30;i++) cout << "---";
 
+	clear << "Simulation Start\n"; clear.close();
+
+	for (int i = 0;i < 30;i++) write << "---";
+	write << "\n\n";
 
 	//convert to minutes
 	simTime = readTime(stime);
@@ -87,8 +96,10 @@ int main()
 			simTime -= clockTime;
 			clockTime = 0;
 		}
-		timeStatus(); 
+
+		if(changeTimeStatus()) probability= float(1)/generateArrivalAverage();
 		if (timeofDay % 360 == 0) generateWeather();
+
 		Arrived(probability);
 		canService();
 		if (timeTillService > 0) timeTillService--;
@@ -98,16 +109,24 @@ int main()
 	for (int i = 0;i < 30;i++) cout << "---";
 	cout << "\nSimulation complete\n";
 
+	for (int i = 0;i < 30;i++) write << "---";
+	write << "\nsimulation complete\n";
+
 	if (jobCount != 0)
 	{
 		averageTime = waitTotal / jobCount;
 		cout << "\nAverage wait time is " << writeTime(averageTime)<< ". Airplanes not processed: "<<jobTotal-jobCount << "\n\n";
+		write << "\nAverage wait time is " << writeTime(averageTime) << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
 
 
 	}
-	else cout << "\nNo jobs have been processed\n\n";
+	else
+	{
+		cout << "\nNo jobs have been processed\n\n";
+	    write << "\nNo jobs have been processed\n\n";
+	}
 
-
+	write.close();
 
 	return 0;
 }
@@ -118,11 +137,11 @@ int generateArrivalAverage()
 	//but for now just set it
 	int T;
 	//only works properly if we call srand in the function itself
-	if (Prime) T = 4;
+	if (Prime) T = .4;
 
-	else if (Low) T = 8;
+	else if (Low) T = .8;
 
-	else T = 16;
+	else T = .16;
 
 	return T;
 }
@@ -252,8 +271,9 @@ void exitLine()
 		waitTotal += readTime(plane.getWaitTime());
 		jobCount++;
 		plane.print();
-		cout << "started service at " << writeTime(timeofDay) << ". Wait time = " << plane.getWaitTime() << "\n";
-		timeTillService = line.viewFront()->getServiceTime();
+		cout << "Started Service at " << writeTime(timeofDay) << "\nWait Time Before Landing: " << plane.getWaitTime() << "\nEstimated Service Duration: " << writeTime(plane.getServiceTime()) << "\n\n";
+		writeToLog(plane);
+		timeTillService = plane.getServiceTime();
 }
 
 //Airplane* exitLine()
@@ -301,45 +321,63 @@ void displayWeather() {
 
 	//Y! add comment about weather condition and how each of them will affect landing time
 	switch (currentWeather) {
-	case 0: cout << "\n\nWeather Forecast Update: Sunny Conditions. Estimated Service is Normal\n\n"; return;
-	case 1: cout << "\n\nWeather Forecast Update: Rainy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
-	case 2: cout << "\n\nWeather Forecast Update: Windy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
-	case 3: cout << "\n\nWeather Forecast Update: Stormy Conditions. Warning: Estimated Service is Above Normal\n\n"; return;
+	case 0: cout << "\n\n[Weather Forecast Update] Sunny Conditions.\nEstimated Service Time is Normal\n\n"; return;
+	case 1: cout << "\n\n[Weather Forecast Update] Rainy Conditions.\n*Warning: Estimated Service Time is Above Normal*\n\n"; return;
+	case 2: cout << "\n\n[Weather Forecast Update] Windy Conditions.\n*Warning: Estimated Service Time is Above Normal*\n\n"; return;
+	case 3: cout << "\n\n[Weather Forecast Update] Stormy Conditions.\n*Warning: Estimated Service Time is Above Normal*\n\n"; return;
 	}
 
 }
 
-void timeStatus() {
+bool changeTimeStatus() {
 
 	//at 12 pm
 	if (timeofDay == 720)
 	{
 		Prime = true;
-		cout << "\nWarning: Entering Prime Time. Frequency of Airplane Arrival is Expected to Increase\n";
-		generateArrivalAverage();
+		cout << "\n\n*Warning: Entering Prime Time.*\nFrequency of Airplane Arrival is Expected to Increase\n\n";
+		return true;
 	}
 
 	//at 4 pm
 	else if (timeofDay == 960)
 	{
 		Prime = false;
-		cout <<"\nWarning: Prime Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
-		generateArrivalAverage();
+		cout <<"\n\n*Warning: Prime Time is Over.*\nFrequency of Airplane Arrival is Expected to Go Back to Normal\n\n";
+		return true;
 	}
 
 	//at 2 am
 	else if (timeofDay == 120)
 	{
 		Low = true;
-		cout << "\nWarning: Entering Low Time. Frequency of Airplane Arrival is Expected to Decrease\n";
-		generateArrivalAverage();
+		cout << "\n\n*Warning: Entering Low Time.*\nFrequency of Airplane Arrival is Expected to Decrease\n\n";
+		return true;
 	}
 
 	//at 6 am
 	else if (timeofDay == 360)
 	{
 		Low = false;
-		cout << "\nWarning: Low Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
-		generateArrivalAverage();
+		cout << "\n*Warning: Low Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
+		return true;
 	}
+
+	return false;
 }
+
+void writeToLog(Airplane plane)
+{
+	if (!write.fail()) {
+
+		write << "\nAirplane ID: " << plane.getId() << "\nDeparture: " << plane.getDeparture() << "\nNumber of Passengers: " << plane.getPassNum()<<"\nArrival Time; "<<plane.getArrivalTime();
+		write << "\nStatus: ";
+		if (plane.getUrgent()) write << "Urgent\n"; else write << "Not Urgent\n";
+
+		write << "Started Service at " << writeTime(timeofDay) << "\nWait Time Before Landing: " << plane.getWaitTime() << "\nEstimated Service Duration: " << writeTime(plane.getServiceTime());
+		write << "\n\n\n";
+
+	}
+	else cout << "Failed to Open Log File to Write";
+}
+
