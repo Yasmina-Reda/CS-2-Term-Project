@@ -12,7 +12,7 @@ enum  Country { Egypt, Kuwait,Saudia_Arabia, UAE };
 
 class Airplane{
 
-tructor// Define a struct for an airplane
+// Define a struct for an airplane
 //Y: changed it to a class
 
 //Y! let's add a static variable here instead of total job count
@@ -28,13 +28,9 @@ private:
     bool urgent = false;        // Whether the airplane has an urgent status
     static int totalcount;
 public:
-<<<<<<< HEAD
-    // Default cons
-    Airplane();
-=======
     // Default constructor
     Airplane(int);
->>>>>>> 5ed36d942dc2f884b59fa2972e0a0f9e4523368b
+
 
     // Destructor
     ~Airplane();
