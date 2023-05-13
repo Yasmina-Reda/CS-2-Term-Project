@@ -27,8 +27,9 @@ int Airport::calculateLandingTime(Airplane* a, string weather) {
 }
 
 // Displays the time and weather of the airport
-void Airport::displayTime() {
+void Airport::displayWeather() {
     
+    //Y! add comment about weather condition and how each of them will affect landing time
     cout << "Current weather: " << weather << endl;
 }
 
@@ -52,20 +53,21 @@ void Airport::displayTime() {
 }*/
 
 // Generates circumstances that affect an airplane's landing time (i.e. weather and passenger count)
-//Y! rermove and move over to constructor
-Airplane* Airport::Randomgenerate() {
-  
-    int id = (rand () % 100) + 1;
-    int passNum = rand() % 200 + 1;
-    //Y! don't set arrival time here. It's set in simulation
-    //string arrivalTime = "to_string(rand() % 24) : to_string(rand() % 60)";
-    Airplane* a = new Airplane();
-    a->setId(to_string(id));
-    
-    a->setPassNum(passNum);
-    //a->setArrivalTime(arrivalTime);
-    return a;
-}
+//Y! rermoved and moved over to constructor
+
+//Airplane* Airport::Randomgenerate() {
+//  
+//    int id = (rand () % 100) + 1;
+//    int passNum = rand() % 200 + 1;
+//    //Y! don't set arrival time here. It's set in simulation
+//    //string arrivalTime = "to_string(rand() % 24) : to_string(rand() % 60)";
+//    Airplane* a = new Airplane();
+//    a->setId(to_string(id));
+//    
+//    a->setPassNum(passNum);
+//    //a->setArrivalTime(arrivalTime);
+//    return a;
+//}
 
 // Generates a random weather condition
 string Airport::generateWeather() {

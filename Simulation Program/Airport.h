@@ -27,13 +27,13 @@ public:
     int calculateLandingTime(Airplane* airplane, string weather);
 
     // Displays the current time at the airport
-    void displayTime();
+    void displayWeather();
 
     // Inserts an airplane into the airport's deque
-    void insertDEQ(Airplane* airplane);
+    //void insertDEQ(Airplane* airplane);
 
     // Generates airplane with random characteristics and returns a pointer to it
-    Airplane* Randomgenerate();
+    //Airplane* Randomgenerate();
     
     // Generates random sweather that affect the landing time of an airplane
    string generateWeather();

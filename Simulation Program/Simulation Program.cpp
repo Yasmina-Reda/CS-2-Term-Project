@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <random>
 #include "Airport.h"
 #include "Airport.cpp"
 using namespace std;
@@ -10,16 +11,19 @@ using namespace std;
 
 //global variables
 Airport MAIN; string stime; DEQ line;
-int simTime, clockTime=0, timeTillService=0, jobCount=0, waitTotal=0, landingTime;
+int simTime, clockTime=0, timeTillService=0, jobCount=0, jobTotal=0, waitTotal=0, landingTime;
 
 
 //Prototypes
 
-//returns a random value for arrival time, range varies depending on time of the day
+////returns a random value for arrival time, range varies depending on time of the day
 int generateArrivalAverage();
-
-//generates a random double
+//
+////generates a random double
 float generateRandFloat();
+
+//generates random probability of plane arrival range varies depending on time of the day
+//bool generateProbability();
 
 //reads a string time in hh:mm and returns minutes 
 int readTime(string);
@@ -31,7 +35,7 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-bool Arrived(double);
+bool Arrived();
 
 //test if a plane can be serviced
 bool canService();
@@ -44,13 +48,14 @@ void exitLine();
 
 int main()
 {
-
-	int arrivalAVG = generateArrivalAverage();
-	int probablityArrival = /*float(1) /*/ arrivalAVG;
-	Airplane* temp;
 	//please enter simulation time in hh:mm
-	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; cin >> stime;
+	cout << "Please Enter Simulation Duration in hh:mm or h:mm format: "; //cin >> stime;
+	stime = "01:00";
 	validateTime(stime);
+
+	cout << "\n\nSimulation Start\n";
+	for (int i = 0;i < 30;i++) cout << "---";
+
 
 	//convert to minutes
 	simTime = readTime(stime);
@@ -60,21 +65,25 @@ int main()
 
 	for (clockTime; clockTime < simTime;clockTime++)
 	{
-		Arrived(probablityArrival);
+		
+		Arrived();
 		canService();
 		if (timeTillService > 0) timeTillService--;
 	}
 
-	cout << "\nSimulation complete\n";
-
+	cout << endl;
 	for (int i = 0;i < 30;i++) cout << "---";
+	cout << "\nSimulation complete\n";
 
 	if (jobCount != 0)
 	{
 		averageTime = waitTotal / jobCount;
-		cout << "\nAverage wait time is " << writeTime(averageTime);
+		cout << "\nAverage wait time is " << writeTime(averageTime)<< ". Airplanes not processed: "<<jobTotal-jobCount << "\n\n";
+
+
 	}
-	else cout << "\nNo jobs have been processed\n";
+	else cout << "\nNo jobs have been processed\n\n";
+
 
 
 	return 0;
@@ -84,19 +93,32 @@ int generateArrivalAverage()
 {
 	//Y! if prime time increase, else decrease
 	//but for now just set it
+
+	//only works properly if we call srand in the function itself
 	srand(clockTime);
-	int T = rand() % 5 + 1;
+	int T = rand() % 8 + 1;
 	return T;
 }
 
+
+//Y! fix this, or not
 float generateRandFloat()
 {
+	//only works properly if we call srand in the function itself
 	srand(clockTime);
-	//float T = rand() / float(32767);
-	int T = rand() % 5 + 1;
+	float T = rand() / float(rand()%50+150);
+	//int T = rand() % 5 + 1;
+
 	return T;
 }
 
+//bool generateProbability()
+//{
+//	//vary based on time of day
+//	srand(clockTime);
+//	if (rand() % 100 < 10) return true;
+//	else return false;
+//}
 
 int readTime(string time)
 
@@ -115,8 +137,9 @@ int readTime(string time)
 
 string writeTime(int t)
 {
-	string time;
-	time = "" + to_string(t / 60) + ':';
+	string time="";
+	if (t / 60 < 10) time = time + '0';
+	time +=to_string(t / 60) + ':';
 	if (t % 60 < 10) time = time + '0';
 	time += to_string(t % 60);
 	return time;
@@ -132,26 +155,33 @@ void validateTime(string& time)
 }
 
 
-bool Arrived(double probability)
+bool Arrived()
 {
-	int R = generateRandFloat();
 
 	//if the probability allows for plane arrival
-	if (R < probability)
+	/* if (generateProbability())*/
+	//srand(clockTime);
+
+	float R = generateRandFloat();
+	float probability = float(1) / generateArrivalAverage();
+
+	if((R < probability))
 	{
 		//generates a new plane if arrived;
-		Airplane* plane = MAIN.Randomgenerate();
+		Airplane* plane=new Airplane();
 
 		//sets arrival time with the current clockTime
 		plane->setArrivalTime(writeTime(clockTime));
 
 		//adds plane to deque
 		line.addRear(plane);
+		jobTotal++;
+		cout << "\nyes at " << writeTime(clockTime);
 		return true;
 	}
 	else
 	{
-		cout << "no\n";
+		cout << "\nno";
 		return false;
 	}
 

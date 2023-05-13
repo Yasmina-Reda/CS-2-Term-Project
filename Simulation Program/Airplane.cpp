@@ -11,6 +11,11 @@ Airplane::Airplane() {
     int passengerNum;   
     string id;
     */
+    //play with ascii
+    id = to_string((rand() % 100) + 1);
+    passengerNum = rand() % 200 + 1;
+    int u = rand() % 10;
+    if (u == 1) urgent = true;
     totalcount++;
 }
 
@@ -90,9 +95,7 @@ bool Airplane::getUrgent() {
     //urgent shouldn't be that many
     //so maybe one in every ten
 
-	int u=rand()%10;
-    if (u == 1) urgent = true; 
-    return this->urgent;
+    return /*this->*/ urgent;
 }
 int Airplane::getTotalAirplanes() {
     return totalcount;
@@ -104,6 +107,6 @@ void Airplane::print() {
     cout << "Number of Passengers: " << getPassNum() << endl;
     //cout << "Wait time before landing: " << getWaitTime() << endl;
   cout << "Arrival time: " << getArrivalTime() << endl;
-  if (urgent) cout << "Urgent. Moved to priority queue\n";
+  if (urgent) cout << "Urgent Airplane->Moved to priority queue\n";
 }
 
