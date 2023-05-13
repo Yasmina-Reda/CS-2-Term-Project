@@ -5,6 +5,8 @@
 #include <ctime>
 #include <random>
 #include <fstream>
+#include <chrono>
+#include <thread>
 #include "DEQ.h"
 #include "DEQ.cpp"
 using namespace std;
@@ -12,13 +14,13 @@ using namespace std;
 
 //global variables
 string stime, DayBegin = "6:00"; bool Prime, Low; DEQ line;
-int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTotal = 0, waitTotal = 0, landingTime;
+int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTotal = 0, waitTotal = 0;
 enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
 ofstream write("Log.txt", ios::app);
 
 //Prototypes
 
-////returns a random value for arrival time, range varies depending on time of the day
+//returns a random value for arrival time, range varies depending on time of the day
 int generateArrivalAverage();
 //
 ////generates a random double
@@ -37,13 +39,13 @@ string writeTime(int);
 void validateTime(string&);
 
 //tests if a plane has arrived and can be entered into the landing
-bool Arrived(float);
+void Arrived(float);
 
 //test if a plane can be serviced
-bool canService();
+void canService();
 
 //returns true if there is a plane to dequeue, sets its wait time and updates waitTotal and jobCount. Returns false if DEQ is empty
-void exitLine();
+
 
 // Calculates the landing time of an airplane based on weather and number of passengers
 int calculateLandingTime(Airplane*);
@@ -61,10 +63,11 @@ void writeToLog(Airplane);
 
 int main()
 {
-	cout<<"Welcome to Airport Simulator\n\nDay Begins at "<<DayBegin<<"\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
-	//cin >> stime;
-	stime = "00:05";
+	cout << "Welcome to Airport Simulator\n\nDay Begins at " << DayBegin << "\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
+	cin >> stime;
 	validateTime(stime);
+
+	char real = 'N'; cout << "For Real Time Simulation, Enter the Character 'Y': "; cin >> real;
 
 	ofstream clear("Log.txt");
 
@@ -80,29 +83,62 @@ int main()
 	simTime = readTime(stime);
 
 	//Y! get landing time from Airport but initialize for now
-	landingTime = 10; int averageTime;
+	int averageTime;
 
 	float probability = float(1) / generateArrivalAverage();
 
 	timeofDay = readTime(DayBegin);
 	generateWeather();
+	if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
 
-	for (clockTime; clockTime < simTime;clockTime++)
-	{
-		timeofDay++;
-		if (timeofDay == 1440)
+	if (real=='Y') {
+
+		for (clockTime; clockTime < simTime;clockTime++)
 		{
-			timeofDay = 0;
-			simTime -= clockTime;
-			clockTime = 0;
+			timeofDay++;
+			//if we reached 24:00
+			if (timeofDay == 1440)
+			{
+				timeofDay = 0;
+				simTime -= clockTime;
+				clockTime = 0;
+			}
+
+			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			if (timeofDay % 360 == 0) generateWeather();
+
+			Arrived(probability);
+			canService();
+			if (timeTillService > 0) timeTillService--;
+			cout << "Current Time: " << writeTime(timeofDay) << "\t Runway Status: ";
+			if (timeTillService == 0) cout << "Free"; else cout << "Occupied";
+			cout << "\r";
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+		}
+	}
+
+	else {
+
+		for (clockTime; clockTime < simTime;clockTime++)
+		{
+			timeofDay++;
+			//if we reached 24:00
+			if (timeofDay == 1440)
+			{
+				timeofDay = 0;
+				simTime -= clockTime;
+				clockTime = 0;
+			}
+
+			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			if (timeofDay % 360 == 0) generateWeather();
+
+			Arrived(probability);
+			canService();
+			if (timeTillService > 0) timeTillService--;
 		}
 
-		if(changeTimeStatus()) probability= float(1)/generateArrivalAverage();
-		if (timeofDay % 360 == 0) generateWeather();
-
-		Arrived(probability);
-		canService();
-		if (timeTillService > 0) timeTillService--;
 	}
 
 	cout << endl;
@@ -115,7 +151,7 @@ int main()
 	if (jobCount != 0)
 	{
 		averageTime = waitTotal / jobCount;
-		cout << "\nAverage wait time is " << writeTime(averageTime)<< ". Airplanes not processed: "<<jobTotal-jobCount << "\n\n";
+		cout << "\nAverage wait time is " << writeTime(averageTime) << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
 		write << "\nAverage wait time is " << writeTime(averageTime) << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
 
 
@@ -123,13 +159,12 @@ int main()
 	else
 	{
 		cout << "\nNo jobs have been processed\n\n";
-	    write << "\nNo jobs have been processed\n\n";
+		write << "\nNo jobs have been processed\n\n";
 	}
 
 	write.close();
 
 	return 0;
-
 }
 
 int generateArrivalAverage()
@@ -138,11 +173,11 @@ int generateArrivalAverage()
 	//but for now just set it
 	int T;
 	//only works properly if we call srand in the function itself
-	if (Prime) T = .4;
+	if (Prime) T = 5;
 
-	else if (Low) T = .8;
+	else if (Low) T = 20;
 
-	else T = .16;
+	else T = 10;
 
 	return T;
 }
@@ -155,7 +190,7 @@ float generateRandFloat()
 	srand(time(NULL) + timeofDay);
 
 	//Y! fix probability based on simTime
-	float T = rand() / float(rand()%36767+10000);
+	float T = rand() / float(rand()%32767);
 	/*(rand() % 40000 + 10000)*/
 	//int T = rand() % 5 + 1;
 
@@ -187,9 +222,9 @@ int readTime(string time)
 
 string writeTime(int t)
 {
-	string time="";
+	string time = "";
 	if (t / 60 < 10) time = time + '0';
-	time +=to_string(t / 60) + ':';
+	time += to_string(t / 60) + ':';
 	if (t % 60 < 10) time = time + '0';
 	time += to_string(t % 60);
 	return time;
@@ -197,15 +232,14 @@ string writeTime(int t)
 
 void validateTime(string& time)
 {
-	//to make sure string entered is in h:mm or hh:mm format
+	//to make sure string entered is in h:mm or hh:mm format 
 	while (!(time.length() == 4 && time.at(1) == ':') && time.length() != 5)
 	{
 		cout << "\nInvalid time format. Please re-enter: "; cin >> time;
 	}
 }
 
-
-bool Arrived(float probability)
+void Arrived(float probability)
 {
 
 	//if the probability allows for plane arrival
@@ -214,10 +248,10 @@ bool Arrived(float probability)
 
 	float R = generateRandFloat();
 
-	if((R < probability))
+	if ((R < probability))
 	{
 		//generates a new plane if arrived;
-		Airplane* plane=new Airplane(timeofDay);
+		Airplane* plane = new Airplane(timeofDay);
 
 		//sets arrival time with the current time: DayBegin+ClockTime
 		plane->setArrivalTime(writeTime(timeofDay));
@@ -228,95 +262,55 @@ bool Arrived(float probability)
 		jobTotal++;
 		//cout << "\nyes at " << writeTime(clockTime);
 		cout << "\n-->Airplane " << plane->getId() << " arrived\n";
-		if(plane->getUrgent()) cout << "Urgent Airplane->Moved to priority queue\n";
-		return true;
-	}
-	else
-	{
-		//cout << "\nno";
-		return false;
-	}
+		if (plane->getUrgent()) cout << "Urgent Airplane->Moved to priority queue\n";
 
+	}
+	return;
 }
 
-
-
-
-bool canService()
+void canService()
 {
 	//if the conditions are met for carrying out the service
 	if (timeTillService == 0 && !line.DEQisEmpty())
 	{
-		//Airplane* plane;
-		 exitLine();
-
-			//outputs plane info and time
-			//Y! problem with print
-			//plane->print();
-			return true;
-	}
-	//else returns false
-	return false;
-}
-
-
-void exitLine()
-{
 		Airplane plane;
 		plane = line.removeFront();
 		int wt;
-		if (timeofDay < readTime(plane.getArrivalTime())) wt = 1440 + timeofDay- readTime(plane.getArrivalTime());
-		else wt=timeofDay - readTime(plane.getArrivalTime());
+		if (timeofDay < readTime(plane.getArrivalTime())) wt = 1440 + timeofDay - readTime(plane.getArrivalTime());
+		else wt = timeofDay - readTime(plane.getArrivalTime());
 
 		plane.setWaitTime(writeTime(wt));
-		waitTotal += readTime(plane.getWaitTime());
+		waitTotal += wt;
 		jobCount++;
 		plane.print();
 		cout << "Started Service at " << writeTime(timeofDay) << "\nWait Time Before Landing: " << plane.getWaitTime() << "\nEstimated Service Duration: " << writeTime(plane.getServiceTime()) << "\n\n";
 		writeToLog(plane);
 		timeTillService = plane.getServiceTime();
-}
 
-//Airplane* exitLine()
-//{
-//	if (line.DEQisEmpty())
-//	{
-//		cout << "Report: Line is Empty";
-//		return nullptr;
-//	}
-//	else
-//	{
-//		Airplane a= line.removeFront();
-//		Airplane* plane = &a;
-//		plane->setWaitTime(writeTime(clockTime - readTime(plane->getArrivalTime())));
-//		waitTotal += readTime(plane->getWaitTime());
-//		jobCount++;
-//		return plane;
-//	}
-//}
+	}
+	return;
+}
 
 int calculateLandingTime(Airplane* plane) {
 	int passNum = plane->getPassNum();
 	return 10 * (passNum / float(100)) * weatherFactor;
 }
 
-
 void generateWeather() {
-	
-		srand(time(NULL) + timeofDay);
-		int r = rand() % 6;
-		switch (r) {
-		case 0:
-		case 1:
-		case 2: currentWeather = Sunny; weatherFactor = 1; break;
-		case 3: currentWeather = Rainy; weatherFactor = 1.25; break;
-		case 4: currentWeather = Windy; weatherFactor = 1.75; break;
-		case 5: currentWeather = Stormy; weatherFactor = 2; 
-		}
-		displayWeather();
-		return;
-}
 
+	srand(time(NULL) + timeofDay);
+	int r = rand() % 6;
+	switch (r) {
+	case 0:
+	case 1:
+	case 2: currentWeather = Sunny; weatherFactor = 1; break;
+	case 3: currentWeather = Rainy; weatherFactor = 1.25; break;
+	case 4: currentWeather = Windy; weatherFactor = 1.75; break;
+	case 5: currentWeather = Stormy; weatherFactor = 2;
+	}
+	displayWeather();
+	return;
+}
 
 void displayWeather() {
 
@@ -344,7 +338,7 @@ bool changeTimeStatus() {
 	else if (timeofDay == 960)
 	{
 		Prime = false;
-		cout <<"\n\n*Warning: Prime Time is Over.*\nFrequency of Airplane Arrival is Expected to Go Back to Normal\n\n";
+		cout << "\n\n*Warning: Prime Time is Over.*\nFrequency of Airplane Arrival is Expected to Go Back to Normal\n\n";
 		return true;
 	}
 
@@ -371,7 +365,7 @@ void writeToLog(Airplane plane)
 {
 	if (!write.fail()) {
 
-		write << "\nAirplane ID: " << plane.getId() << "\nDeparture: " << plane.getDeparture() << "\nNumber of Passengers: " << plane.getPassNum()<<"\nArrival Time; "<<plane.getArrivalTime();
+		write << "\nAirplane ID: " << plane.getId() << "\nDeparture: " << plane.getDeparture() << "\nNumber of Passengers: " << plane.getPassNum() << "\nArrival Time; " << plane.getArrivalTime();
 		write << "\nStatus: ";
 		if (plane.getUrgent()) write << "Urgent\n"; else write << "Not Urgent\n";
 
