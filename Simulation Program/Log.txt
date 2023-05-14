@@ -2,40 +2,95 @@ Simulation Start
 ------------------------------------------------------------------------------------------
 
 
-Airplane ID: BM955
-Departure: Saudia_Arabia
-Number of Passengers: 28
-Arrival Time; 06:12
-Status: Not Urgent
-Started Service at 06:12
-Wait Time Before Landing: 00:00
-Estimated Service Duration: 00:02
-
-
-
-Airplane ID: BC662
+Airplane ID: BF644
 Departure: Kuwait
-Number of Passengers: 190
-Arrival Time; 06:18
+Number of Passengers: 77
+Arrival Time; 06:10
 Status: Not Urgent
-Started Service at 06:18
+Started Service at 06:10
 Wait Time Before Landing: 00:00
-Estimated Service Duration: 00:19
+Estimated Service Duration: 00:09
 
 
 
-Airplane ID: BJ852
-Departure: UAE
-Number of Passengers: 24
-Arrival Time; 06:23
+Airplane ID: BL161
+Departure: Saudia_Arabia
+Number of Passengers: 37
+Arrival Time; 06:11
 Status: Urgent
-Started Service at 06:37
-Wait Time Before Landing: 00:14
-Estimated Service Duration: 00:02
+Started Service at 06:19
+Wait Time Before Landing: 00:08
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BC137
+Departure: Kuwait
+Number of Passengers: 72
+Arrival Time; 06:21
+Status: Not Urgent
+Started Service at 06:24
+Wait Time Before Landing: 00:03
+Estimated Service Duration: 00:09
+
+
+
+Airplane ID: BI957
+Departure: UAE
+Number of Passengers: 33
+Arrival Time; 06:22
+Status: Not Urgent
+Started Service at 06:33
+Wait Time Before Landing: 00:11
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BF450
+Departure: UAE
+Number of Passengers: 29
+Arrival Time; 06:33
+Status: Urgent
+Started Service at 06:38
+Wait Time Before Landing: 00:05
+Estimated Service Duration: 00:04
+
+
+
+Airplane ID: BY933
+Departure: Saudia_Arabia
+Number of Passengers: 68
+Arrival Time; 06:32
+Status: Not Urgent
+Started Service at 06:42
+Wait Time Before Landing: 00:10
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BC347
+Departure: Egypt
+Number of Passengers: 24
+Arrival Time; 06:44
+Status: Not Urgent
+Started Service at 06:50
+Wait Time Before Landing: 00:06
+Estimated Service Duration: 00:04
+
+
+
+Airplane ID: BJ268
+Departure: Kuwait
+Number of Passengers: 185
+Arrival Time; 06:45
+Status: Not Urgent
+Started Service at 06:54
+Wait Time Before Landing: 00:09
+Estimated Service Duration: 00:20
 
 
 ------------------------------------------------------------------------------------------
 simulation complete
 
-Average wait time is 00:04. Airplanes not processed: 0
+Average wait time is 00:06. Total Airplanes: 10. Airplanes not processed: 2
 

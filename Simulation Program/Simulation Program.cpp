@@ -13,7 +13,7 @@ using namespace std;
 
 
 //global variables
-string stime, DayBegin = "6:00"; bool Prime, Low; DEQ line;
+string stime, DayBegin = "6:00"; DEQ line; //bool Prime, Low;
 int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTotal = 0, waitTotal = 0;
 enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
 ofstream write("Log.txt", ios::app);
@@ -59,7 +59,7 @@ void displayWeather();
 void generateWeather();
 
 //Prime or Low Time based on current time of day
-bool changeTimeStatus();
+//bool changeTimeStatus();
 
 void writeToLog(Airplane);
 
@@ -95,7 +95,7 @@ int main()
 
 	timeofDay = readTime(DayBegin);
 	generateWeather();
-	if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+	//if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
 
 	if (real=='Y') {
 
@@ -110,7 +110,7 @@ int main()
 				clockTime = 0;
 			}
 
-			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			//if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
 			if (timeofDay % 360 == 0) generateWeather();
 
 			Arrived(probability);
@@ -136,7 +136,7 @@ int main()
 				clockTime = 0;
 			}
 
-			if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
+			//if (changeTimeStatus()) probability = float(1) / generateArrivalAverage();
 			if (timeofDay % 360 == 0) generateWeather();
 
 			Arrived(probability);
@@ -156,8 +156,8 @@ int main()
 	if (jobCount != 0)
 	{
 		averageTime = waitTotal / jobCount;
-		cout << "\nAverage wait time is " << writeTime(averageTime) << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
-		write << "\nAverage wait time is " << writeTime(averageTime) << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
+		cout << "\nAverage wait time is " << writeTime(averageTime) << ". Total Airplanes: " << jobTotal << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
+		write << "\nAverage wait time is " << writeTime(averageTime) << ". Total Airplanes: " << jobTotal << ". Airplanes not processed: " << jobTotal - jobCount << "\n\n";
 
 
 	}
@@ -175,8 +175,6 @@ int main()
 
 int generateArrivalAverage()
 {
-	//Y! if prime time increase, else decrease
-	//but for now just set it
 	int T; srand(time(NULL) + timeofDay);
 	//only works properly if we call srand in the function itself
 
@@ -186,7 +184,7 @@ int generateArrivalAverage()
 
 	else T = 10;*/
 
-	T = rand() % 8 + 1;
+	T = rand() % 6;
 	return T;
 }
 
@@ -285,8 +283,8 @@ void Arrived(float probability)
 		line.addRear(plane);
 		jobTotal++;
 		//cout << "\nyes at " << writeTime(clockTime);
-		cout << "\n-->Airplane " << plane->getId() << " arrived\n";
-		if (plane->getUrgent()) cout << "Urgent Airplane->Moved to priority queue\n";
+		cout << "-->Airplane " << plane->getId() << " arrived.  ";
+		if (plane->getUrgent()) cout << "Alert: Urgent Airplane->Moved to priority queue\n\n"; else cout << "                    \n\n";
 
 	}
 	return;
@@ -306,8 +304,9 @@ void canService()
 		plane.setWaitTime(writeTime(wt));
 		waitTotal += wt;
 		jobCount++;
+		cout << "Start service:                                    \n";
 		plane.print();
-		cout << "Started Service at " << writeTime(timeofDay) << "\nWait Time Before Landing: " << plane.getWaitTime() << "\nEstimated Service Duration: " << writeTime(plane.getServiceTime()) << "\n\n";
+		cout << "\nStarted Service at " << writeTime(timeofDay) << "\nWait Time Before Landing: " << plane.getWaitTime() << "\nEstimated Service Duration: " << writeTime(plane.getServiceTime()) << "\n\n";
 		writeToLog(plane);
 		timeTillService = plane.getServiceTime();
 
@@ -317,7 +316,7 @@ void canService()
 
 int calculateLandingTime(Airplane* plane) {
 	int passNum = plane->getPassNum();
-	return 10 * (passNum / float(100)) * weatherFactor;
+	return 10 * (passNum / float(100)) * weatherFactor + 2;
 }
 
 void generateWeather() {
@@ -348,43 +347,6 @@ void displayWeather() {
 
 }
 
-bool changeTimeStatus() {
-
-	//at 12 pm
-	if (timeofDay == 720)
-	{
-		Prime = true;
-		cout << "\n\n*Warning: Entering Prime Time.*\nFrequency of Airplane Arrival is Expected to Increase\n\n";
-		return true;
-	}
-
-	//at 4 pm
-	else if (timeofDay == 960)
-	{
-		Prime = false;
-		cout << "\n\n*Warning: Prime Time is Over.*\nFrequency of Airplane Arrival is Expected to Go Back to Normal\n\n";
-		return true;
-	}
-
-	//at 2 am
-	else if (timeofDay == 120)
-	{
-		Low = true;
-		cout << "\n\n*Warning: Entering Low Time.*\nFrequency of Airplane Arrival is Expected to Decrease\n\n";
-		return true;
-	}
-
-	//at 6 am
-	else if (timeofDay == 360)
-	{
-		Low = false;
-		cout << "\n*Warning: Low Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
-		return true;
-	}
-
-	return false;
-}
-
 void writeToLog(Airplane plane)
 {
 	if (!write.fail()) {
@@ -399,4 +361,42 @@ void writeToLog(Airplane plane)
 	}
 	else cout << "Failed to Open Log File to Write";
 }
+
+
+//bool changeTimeStatus() {
+//
+//	//at 12 pm
+//	if (timeofDay == 720)
+//	{
+//		Prime = true;
+//		cout << "\n\n*Warning: Entering Prime Time.*\nFrequency of Airplane Arrival is Expected to Increase\n\n";
+//		return true;
+//	}
+//
+//	//at 4 pm
+//	else if (timeofDay == 960)
+//	{
+//		Prime = false;
+//		cout << "\n\n*Warning: Prime Time is Over.*\nFrequency of Airplane Arrival is Expected to Go Back to Normal\n\n";
+//		return true;
+//	}
+//
+//	//at 2 am
+//	else if (timeofDay == 120)
+//	{
+//		Low = true;
+//		cout << "\n\n*Warning: Entering Low Time.*\nFrequency of Airplane Arrival is Expected to Decrease\n\n";
+//		return true;
+//	}
+//
+//	//at 6 am
+//	else if (timeofDay == 360)
+//	{
+//		Low = false;
+//		cout << "\n*Warning: Low Time is Over. Frequency of Airplane Arrival is Expected to Go Back to Normal\n";
+//		return true;
+//	}
+//
+//	return false;
+//}
 
