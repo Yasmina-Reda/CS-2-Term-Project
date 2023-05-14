@@ -2,95 +2,953 @@ Simulation Start
 ------------------------------------------------------------------------------------------
 
 
-Airplane ID: BF644
-Departure: Kuwait
-Number of Passengers: 77
-Arrival Time; 06:10
+Airplane ID: BB562
+Departure: Saudia_Arabia
+Number of Passengers: 86
+Arrival Time; 06:01
 Status: Not Urgent
-Started Service at 06:10
+Started Service at 06:01
 Wait Time Before Landing: 00:00
-Estimated Service Duration: 00:09
+Estimated Service Duration: 00:10
 
 
 
-Airplane ID: BL161
-Departure: Saudia_Arabia
-Number of Passengers: 37
-Arrival Time; 06:11
-Status: Urgent
-Started Service at 06:19
+Airplane ID: BH977
+Departure: UAE
+Number of Passengers: 46
+Arrival Time; 06:03
+Status: Not Urgent
+Started Service at 06:11
 Wait Time Before Landing: 00:08
-Estimated Service Duration: 00:05
+Estimated Service Duration: 00:06
 
 
 
-Airplane ID: BC137
-Departure: Kuwait
-Number of Passengers: 72
-Arrival Time; 06:21
-Status: Not Urgent
-Started Service at 06:24
-Wait Time Before Landing: 00:03
-Estimated Service Duration: 00:09
-
-
-
-Airplane ID: BI957
-Departure: UAE
-Number of Passengers: 33
-Arrival Time; 06:22
-Status: Not Urgent
-Started Service at 06:33
-Wait Time Before Landing: 00:11
-Estimated Service Duration: 00:05
-
-
-
-Airplane ID: BF450
-Departure: UAE
-Number of Passengers: 29
-Arrival Time; 06:33
-Status: Urgent
-Started Service at 06:38
-Wait Time Before Landing: 00:05
-Estimated Service Duration: 00:04
-
-
-
-Airplane ID: BY933
+Airplane ID: BU415
 Departure: Saudia_Arabia
-Number of Passengers: 68
-Arrival Time; 06:32
+Number of Passengers: 167
+Arrival Time; 06:07
 Status: Not Urgent
-Started Service at 06:42
+Started Service at 06:17
 Wait Time Before Landing: 00:10
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BK122
+Departure: Kuwait
+Number of Passengers: 161
+Arrival Time; 06:19
+Status: Urgent
+Started Service at 06:35
+Wait Time Before Landing: 00:16
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BP621
+Departure: Egypt
+Number of Passengers: 140
+Arrival Time; 06:36
+Status: Urgent
+Started Service at 06:53
+Wait Time Before Landing: 00:17
+Estimated Service Duration: 00:16
+
+
+
+Airplane ID: BD957
+Departure: UAE
+Number of Passengers: 60
+Arrival Time; 06:40
+Status: Urgent
+Started Service at 07:09
+Wait Time Before Landing: 00:29
 Estimated Service Duration: 00:08
 
 
 
-Airplane ID: BC347
+Airplane ID: BY870
 Departure: Egypt
-Number of Passengers: 24
-Arrival Time; 06:44
+Number of Passengers: 63
+Arrival Time; 06:08
 Status: Not Urgent
-Started Service at 06:50
-Wait Time Before Landing: 00:06
+Started Service at 07:17
+Wait Time Before Landing: 01:09
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BJ415
+Departure: Saudia_Arabia
+Number of Passengers: 131
+Arrival Time; 07:20
+Status: Urgent
+Started Service at 07:25
+Wait Time Before Landing: 00:05
+Estimated Service Duration: 00:15
+
+
+
+Airplane ID: BD268
+Departure: Kuwait
+Number of Passengers: 12
+Arrival Time; 07:26
+Status: Urgent
+Started Service at 07:40
+Wait Time Before Landing: 00:14
+Estimated Service Duration: 00:03
+
+
+
+Airplane ID: BF791
+Departure: Kuwait
+Number of Passengers: 23
+Arrival Time; 06:10
+Status: Not Urgent
+Started Service at 07:43
+Wait Time Before Landing: 01:33
 Estimated Service Duration: 00:04
 
 
 
-Airplane ID: BJ268
-Departure: Kuwait
-Number of Passengers: 185
-Arrival Time; 06:45
+Airplane ID: BM308
+Departure: Saudia_Arabia
+Number of Passengers: 183
+Arrival Time; 06:12
 Status: Not Urgent
-Started Service at 06:54
-Wait Time Before Landing: 00:09
+Started Service at 07:47
+Wait Time Before Landing: 01:35
 Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BE620
+Departure: Egypt
+Number of Passengers: 104
+Arrival Time; 07:49
+Status: Urgent
+Started Service at 08:07
+Wait Time Before Landing: 00:18
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BR957
+Departure: UAE
+Number of Passengers: 25
+Arrival Time; 07:53
+Status: Urgent
+Started Service at 08:19
+Wait Time Before Landing: 00:26
+Estimated Service Duration: 00:04
+
+
+
+Airplane ID: BA645
+Departure: Kuwait
+Number of Passengers: 104
+Arrival Time; 06:16
+Status: Not Urgent
+Started Service at 08:23
+Wait Time Before Landing: 02:07
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BQ538
+Departure: Saudia_Arabia
+Number of Passengers: 121
+Arrival Time; 06:21
+Status: Not Urgent
+Started Service at 08:35
+Wait Time Before Landing: 02:14
+Estimated Service Duration: 00:14
+
+
+
+Airplane ID: BE874
+Departure: Egypt
+Number of Passengers: 42
+Arrival Time; 06:25
+Status: Not Urgent
+Started Service at 08:49
+Wait Time Before Landing: 02:24
+Estimated Service Duration: 00:06
+
+
+
+Airplane ID: BQ351
+Departure: Egypt
+Number of Passengers: 195
+Arrival Time; 08:54
+Status: Urgent
+Started Service at 08:55
+Wait Time Before Landing: 00:01
+Estimated Service Duration: 00:21
+
+
+
+Airplane ID: BR312
+Departure: Saudia_Arabia
+Number of Passengers: 162
+Arrival Time; 06:29
+Status: Not Urgent
+Started Service at 09:16
+Wait Time Before Landing: 02:47
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BK557
+Departure: Saudia_Arabia
+Number of Passengers: 168
+Arrival Time; 09:23
+Status: Urgent
+Started Service at 09:34
+Wait Time Before Landing: 00:11
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BQ561
+Departure: Saudia_Arabia
+Number of Passengers: 147
+Arrival Time; 09:40
+Status: Urgent
+Started Service at 09:52
+Wait Time Before Landing: 00:12
+Estimated Service Duration: 00:16
+
+
+
+Airplane ID: BE350
+Departure: UAE
+Number of Passengers: 160
+Arrival Time; 10:07
+Status: Urgent
+Started Service at 10:08
+Wait Time Before Landing: 00:01
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BV767
+Departure: Kuwait
+Number of Passengers: 58
+Arrival Time; 06:30
+Status: Not Urgent
+Started Service at 10:26
+Wait Time Before Landing: 03:56
+Estimated Service Duration: 00:07
+
+
+
+Airplane ID: BC688
+Departure: Saudia_Arabia
+Number of Passengers: 19
+Arrival Time; 06:32
+Status: Not Urgent
+Started Service at 10:33
+Wait Time Before Landing: 04:01
+Estimated Service Duration: 00:03
+
+
+
+Airplane ID: BJ205
+Departure: UAE
+Number of Passengers: 179
+Arrival Time; 06:34
+Status: Not Urgent
+Started Service at 10:36
+Wait Time Before Landing: 04:02
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BE560
+Departure: Saudia_Arabia
+Number of Passengers: 112
+Arrival Time; 10:53
+Status: Urgent
+Started Service at 10:55
+Wait Time Before Landing: 00:02
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BW542
+Departure: Kuwait
+Number of Passengers: 100
+Arrival Time; 06:38
+Status: Not Urgent
+Started Service at 11:08
+Wait Time Before Landing: 04:30
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BN435
+Departure: Saudia_Arabia
+Number of Passengers: 117
+Arrival Time; 06:43
+Status: Not Urgent
+Started Service at 11:20
+Wait Time Before Landing: 04:37
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BQ395
+Departure: Kuwait
+Number of Passengers: 181
+Arrival Time; 06:44
+Status: Not Urgent
+Started Service at 11:33
+Wait Time Before Landing: 04:49
+Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BX849
+Departure: UAE
+Number of Passengers: 103
+Arrival Time; 11:37
+Status: Urgent
+Started Service at 11:53
+Wait Time Before Landing: 00:16
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BF770
+Departure: Egypt
+Number of Passengers: 63
+Arrival Time; 11:39
+Status: Urgent
+Started Service at 12:05
+Wait Time Before Landing: 00:26
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BB771
+Departure: Kuwait
+Number of Passengers: 37
+Arrival Time; 06:47
+Status: Not Urgent
+Started Service at 12:13
+Wait Time Before Landing: 05:26
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BI288
+Departure: Saudia_Arabia
+Number of Passengers: 198
+Arrival Time; 06:49
+Status: Not Urgent
+Started Service at 12:18
+Wait Time Before Landing: 05:29
+Estimated Service Duration: 00:21
+
+
+
+Airplane ID: BR643
+Departure: Egypt
+Number of Passengers: 95
+Arrival Time; 12:21
+Status: Urgent
+Started Service at 12:39
+Wait Time Before Landing: 00:18
+Estimated Service Duration: 00:11
+
+
+
+Airplane ID: BX160
+Departure: Saudia_Arabia
+Number of Passengers: 55
+Arrival Time; 12:23
+Status: Urgent
+Started Service at 12:50
+Wait Time Before Landing: 00:27
+Estimated Service Duration: 00:07
+
+
+
+Airplane ID: BL496
+Departure: Egypt
+Number of Passengers: 176
+Arrival Time; 12:27
+Status: Urgent
+Started Service at 12:57
+Wait Time Before Landing: 00:30
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BR500
+Departure: Egypt
+Number of Passengers: 187
+Arrival Time; 12:44
+Status: Urgent
+Started Service at 13:16
+Wait Time Before Landing: 00:32
+Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BR853
+Departure: UAE
+Number of Passengers: 47
+Arrival Time; 13:07
+Status: Urgent
+Started Service at 13:36
+Wait Time Before Landing: 00:29
+Estimated Service Duration: 00:06
+
+
+
+Airplane ID: BV625
+Departure: Egypt
+Number of Passengers: 118
+Arrival Time; 06:53
+Status: Not Urgent
+Started Service at 13:42
+Wait Time Before Landing: 06:49
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BL647
+Departure: Egypt
+Number of Passengers: 38
+Arrival Time; 13:51
+Status: Urgent
+Started Service at 13:55
+Wait Time Before Landing: 00:04
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BR163
+Departure: Kuwait
+Number of Passengers: 198
+Arrival Time; 13:53
+Status: Urgent
+Started Service at 14:00
+Wait Time Before Landing: 00:07
+Estimated Service Duration: 00:21
+
+
+
+Airplane ID: BF500
+Departure: Egypt
+Number of Passengers: 119
+Arrival Time; 13:57
+Status: Urgent
+Started Service at 14:21
+Wait Time Before Landing: 00:24
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BY181
+Departure: UAE
+Number of Passengers: 15
+Arrival Time; 06:54
+Status: Not Urgent
+Started Service at 14:34
+Wait Time Before Landing: 07:40
+Estimated Service Duration: 00:03
+
+
+
+Airplane ID: BL452
+Departure: UAE
+Number of Passengers: 190
+Arrival Time; 14:37
+Status: Urgent
+Started Service at 14:37
+Wait Time Before Landing: 00:00
+Estimated Service Duration: 00:21
+
+
+
+Airplane ID: BY789
+Departure: Kuwait
+Number of Passengers: 111
+Arrival Time; 14:41
+Status: Urgent
+Started Service at 14:58
+Wait Time Before Landing: 00:17
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BF102
+Departure: Egypt
+Number of Passengers: 175
+Arrival Time; 06:56
+Status: Not Urgent
+Started Service at 15:11
+Wait Time Before Landing: 08:15
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BY100
+Departure: UAE
+Number of Passengers: 63
+Arrival Time; 15:27
+Status: Urgent
+Started Service at 15:30
+Wait Time Before Landing: 00:03
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BM518
+Departure: Kuwait
+Number of Passengers: 135
+Arrival Time; 06:58
+Status: Not Urgent
+Started Service at 15:38
+Wait Time Before Landing: 08:40
+Estimated Service Duration: 00:15
+
+
+
+Airplane ID: BA854
+Departure: UAE
+Number of Passengers: 56
+Arrival Time; 07:02
+Status: Not Urgent
+Started Service at 15:53
+Wait Time Before Landing: 08:51
+Estimated Service Duration: 00:07
+
+
+
+Airplane ID: BK332
+Departure: UAE
+Number of Passengers: 112
+Arrival Time; 07:05
+Status: Not Urgent
+Started Service at 16:00
+Wait Time Before Landing: 08:55
+Estimated Service Duration: 00:13
+
+
+
+Airplane ID: BS792
+Departure: Kuwait
+Number of Passengers: 54
+Arrival Time; 16:11
+Status: Urgent
+Started Service at 16:13
+Wait Time Before Landing: 00:02
+Estimated Service Duration: 00:07
+
+
+
+Airplane ID: BY309
+Departure: Saudia_Arabia
+Number of Passengers: 46
+Arrival Time; 16:13
+Status: Urgent
+Started Service at 16:20
+Wait Time Before Landing: 00:07
+Estimated Service Duration: 00:06
+
+
+
+Airplane ID: BM646
+Departure: Egypt
+Number of Passengers: 167
+Arrival Time; 16:17
+Status: Urgent
+Started Service at 16:26
+Wait Time Before Landing: 00:09
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BN998
+Departure: UAE
+Number of Passengers: 27
+Arrival Time; 16:40
+Status: Urgent
+Started Service at 16:44
+Wait Time Before Landing: 00:04
+Estimated Service Duration: 00:04
+
+
+
+Airplane ID: BQ747
+Departure: Egypt
+Number of Passengers: 73
+Arrival Time; 07:07
+Status: Not Urgent
+Started Service at 16:48
+Wait Time Before Landing: 09:41
+Estimated Service Duration: 00:09
+
+
+
+Airplane ID: BS103
+Departure: UAE
+Number of Passengers: 38
+Arrival Time; 16:57
+Status: Urgent
+Started Service at 16:57
+Wait Time Before Landing: 00:00
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BE185
+Departure: Saudia_Arabia
+Number of Passengers: 194
+Arrival Time; 07:11
+Status: Not Urgent
+Started Service at 17:02
+Wait Time Before Landing: 09:51
+Estimated Service Duration: 00:21
+
+
+
+Airplane ID: BV977
+Departure: UAE
+Number of Passengers: 10
+Arrival Time; 07:16
+Status: Not Urgent
+Started Service at 17:23
+Wait Time Before Landing: 10:07
+Estimated Service Duration: 00:03
+
+
+
+Airplane ID: BY937
+Departure: Saudia_Arabia
+Number of Passengers: 75
+Arrival Time; 07:17
+Status: Not Urgent
+Started Service at 17:26
+Wait Time Before Landing: 10:09
+Estimated Service Duration: 00:09
+
+
+
+Airplane ID: BC494
+Departure: Egypt
+Number of Passengers: 171
+Arrival Time; 07:18
+Status: Not Urgent
+Started Service at 17:35
+Wait Time Before Landing: 10:17
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BM392
+Departure: Egypt
+Number of Passengers: 30
+Arrival Time; 17:41
+Status: Urgent
+Started Service at 17:54
+Wait Time Before Landing: 00:13
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BP830
+Departure: UAE
+Number of Passengers: 91
+Arrival Time; 07:22
+Status: Not Urgent
+Started Service at 17:59
+Wait Time Before Landing: 10:37
+Estimated Service Duration: 00:11
+
+
+
+Airplane ID: BH723
+Departure: Egypt
+Number of Passengers: 108
+Arrival Time; 07:27
+Status: Not Urgent
+Started Service at 18:10
+Wait Time Before Landing: 10:43
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BN644
+Departure: Kuwait
+Number of Passengers: 69
+Arrival Time; 07:29
+Status: Not Urgent
+Started Service at 18:22
+Wait Time Before Landing: 10:53
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BM602
+Departure: UAE
+Number of Passengers: 181
+Arrival Time; 18:27
+Status: Urgent
+Started Service at 18:30
+Wait Time Before Landing: 00:03
+Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BA938
+Departure: Kuwait
+Number of Passengers: 102
+Arrival Time; 18:31
+Status: Urgent
+Started Service at 18:50
+Wait Time Before Landing: 00:19
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BU161
+Departure: Saudia_Arabia
+Number of Passengers: 29
+Arrival Time; 07:31
+Status: Not Urgent
+Started Service at 19:02
+Wait Time Before Landing: 11:31
+Estimated Service Duration: 00:04
+
+
+
+Airplane ID: BB981
+Departure: UAE
+Number of Passengers: 189
+Arrival Time; 07:33
+Status: Not Urgent
+Started Service at 19:06
+Wait Time Before Landing: 11:33
+Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BG396
+Departure: Egypt
+Number of Passengers: 173
+Arrival Time; 19:11
+Status: Urgent
+Started Service at 19:26
+Wait Time Before Landing: 00:15
+Estimated Service Duration: 00:19
+
+
+
+Airplane ID: BA249
+Departure: UAE
+Number of Passengers: 54
+Arrival Time; 19:17
+Status: Urgent
+Started Service at 19:45
+Wait Time Before Landing: 00:28
+Estimated Service Duration: 00:07
+
+
+
+Airplane ID: BN938
+Departure: Kuwait
+Number of Passengers: 67
+Arrival Time; 19:44
+Status: Urgent
+Started Service at 19:52
+Wait Time Before Landing: 00:08
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BI498
+Departure: Egypt
+Number of Passengers: 150
+Arrival Time; 07:35
+Status: Not Urgent
+Started Service at 20:00
+Wait Time Before Landing: 12:25
+Estimated Service Duration: 00:17
+
+
+
+Airplane ID: BS874
+Departure: Egypt
+Number of Passengers: 6
+Arrival Time; 07:38
+Status: Not Urgent
+Started Service at 20:17
+Wait Time Before Landing: 12:39
+Estimated Service Duration: 00:02
+
+
+
+Airplane ID: BV834
+Departure: Saudia_Arabia
+Number of Passengers: 70
+Arrival Time; 07:39
+Status: Not Urgent
+Started Service at 20:19
+Wait Time Before Landing: 12:40
+Estimated Service Duration: 00:09
+
+
+
+Airplane ID: BY391
+Departure: Kuwait
+Number of Passengers: 166
+Arrival Time; 07:40
+Status: Not Urgent
+Started Service at 20:28
+Wait Time Before Landing: 12:48
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BN332
+Departure: Saudia_Arabia
+Number of Passengers: 37
+Arrival Time; 20:45
+Status: Urgent
+Started Service at 20:46
+Wait Time Before Landing: 00:01
+Estimated Service Duration: 00:05
+
+
+
+Airplane ID: BG312
+Departure: Saudia_Arabia
+Number of Passengers: 127
+Arrival Time; 07:42
+Status: Not Urgent
+Started Service at 20:51
+Wait Time Before Landing: 13:09
+Estimated Service Duration: 00:14
+
+
+
+Airplane ID: BM727
+Departure: UAE
+Number of Passengers: 87
+Arrival Time; 07:44
+Status: Not Urgent
+Started Service at 21:05
+Wait Time Before Landing: 13:21
+Estimated Service Duration: 00:10
+
+
+
+Airplane ID: BH538
+Departure: Kuwait
+Number of Passengers: 10
+Arrival Time; 21:14
+Status: Urgent
+Started Service at 21:15
+Wait Time Before Landing: 00:01
+Estimated Service Duration: 00:03
+
+
+
+Airplane ID: BA165
+Departure: Saudia_Arabia
+Number of Passengers: 8
+Arrival Time; 07:48
+Status: Not Urgent
+Started Service at 21:18
+Wait Time Before Landing: 13:30
+Estimated Service Duration: 00:02
+
+
+
+Airplane ID: BK541
+Departure: Kuwait
+Number of Passengers: 64
+Arrival Time; 07:51
+Status: Not Urgent
+Started Service at 21:20
+Wait Time Before Landing: 13:29
+Estimated Service Duration: 00:08
+
+
+
+Airplane ID: BF395
+Departure: Kuwait
+Number of Passengers: 145
+Arrival Time; 07:57
+Status: Not Urgent
+Started Service at 21:28
+Wait Time Before Landing: 13:31
+Estimated Service Duration: 00:16
+
+
+
+Airplane ID: BN541
+Departure: Egypt
+Number of Passengers: 189
+Arrival Time; 21:31
+Status: Urgent
+Started Service at 21:44
+Wait Time Before Landing: 00:13
+Estimated Service Duration: 00:20
+
+
+
+Airplane ID: BB331
+Departure: Saudia_Arabia
+Number of Passengers: 2
+Arrival Time; 21:58
+Status: Urgent
+Started Service at 22:04
+Wait Time Before Landing: 00:06
+Estimated Service Duration: 00:02
+
+
+
+Airplane ID: BI747
+Departure: UAE
+Number of Passengers: 162
+Arrival Time; 22:00
+Status: Urgent
+Started Service at 22:06
+Wait Time Before Landing: 00:06
+Estimated Service Duration: 00:18
+
+
+
+Airplane ID: BL810
+Departure: Saudia_Arabia
+Number of Passengers: 106
+Arrival Time; 07:59
+Status: Not Urgent
+Started Service at 22:24
+Wait Time Before Landing: 14:25
+Estimated Service Duration: 00:12
+
+
+
+Airplane ID: BV288
+Departure: Saudia_Arabia
+Number of Passengers: 162
+Arrival Time; 08:02
+Status: Not Urgent
+Started Service at 22:36
+Wait Time Before Landing: 14:34
+Estimated Service Duration: 00:18
 
 
 ------------------------------------------------------------------------------------------
 simulation complete
 
-Average wait time is 00:06. Total Airplanes: 10. Airplanes not processed: 2
+Average wait time is 04:11. Total Airplanes: 381. Airplanes not processed: 295
 

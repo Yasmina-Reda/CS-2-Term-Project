@@ -18,7 +18,7 @@ int simTime, timeofDay, clockTime = 0, timeTillService = 0, jobCount = 0, jobTot
 enum Weather { Sunny, Rainy, Windy, Stormy }; Weather currentWeather; int weatherFactor;
 ofstream write("Log.txt", ios::app);
 
-ofstream test("result1.csv", std::ios::out | std::ios::app);
+ofstream test("result.csv", std::ios::out | std::ios::app);
 
 //Prototypes
 
@@ -65,10 +65,6 @@ void writeToLog(Airplane);
 
 int main()
 {
-	test << "Max=, "<<"=MAX(A2" << endl;
-	test << "MIN=, " << "=Min(A2" << endl;
-
-
 	cout << "Welcome to Airport Simulator\n\nDay Begins at " << DayBegin << "\n\nPlease Enter Simulation Duration in hh:mm or h:mm format: ";
 	cin >> stime;
 	validateTime(stime);
