@@ -16,4 +16,4 @@ How to use the program
 
 First input the sim duration
 
-Pick real time by Y, else enter any character
+Then, Pick real time by Y, else enter any character
