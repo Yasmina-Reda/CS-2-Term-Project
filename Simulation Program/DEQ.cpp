@@ -32,14 +32,20 @@ void DEQ::addFront(Airplane* airplane){
 			}
 		}
 		else {
-			while (temp->getNext()->getUrgent() == true)
-			{
-				temp = temp->getNext();
+			
+			temp = front;
+			Airplane* before = temp;
+				while (temp->getUrgent() == true)
+				{
+					before = temp;
+					temp = temp->getNext();
 
-			}
-			airplane->setNext(temp->getNext());
+				}
+			airplane->setNext(temp);
 			if (airplane->getNext() == NULL) rear = airplane;
-			temp->setNext(airplane);
+			if (temp != front)
+				before->setNext(airplane);
+			else front = airplane;
 		}
 	}
 	else {

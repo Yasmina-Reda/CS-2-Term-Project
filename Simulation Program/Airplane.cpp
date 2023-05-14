@@ -128,8 +128,8 @@ void Airplane::print() {
   //  //cout << "Wait time before landing: " << getWaitTime() << endl;
   //cout << "Arrival time: " << getArrivalTime() << endl;
 
-  cout << "\nAirplane ID: " << getId() << "\nDeparture: " << getDeparture() << "\nNumber of Passengers: " << getPassNum() << "\nArrival Time: " << getArrivalTime();
+  cout << "Airplane ID: " << getId() << "\nDeparture: " << getDeparture() << "\nNumber of Passengers: " << getPassNum() << "\nArrival Time: " << getArrivalTime();
   cout << "\nStatus: "; 
-  if (urgent) cout << "Urgent\n"; else cout << "Not Urgent\n";
+  if (urgent) cout << "Urgent"; else cout << "Not Urgent";
 }
 
