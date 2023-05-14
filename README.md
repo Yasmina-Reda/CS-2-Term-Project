@@ -15,4 +15,5 @@ Please also note that since the UML diagram is not supposed to include the main 
 How to use the program
 
 First input the sim duration
+
 Pick real time by Y, else enter any character
