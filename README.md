@@ -1,7 +1,7 @@
 # CS2-Term-Project
 
-Habiba El Sayed
-Youssef Badawy
+Habiba El Sayed,
+Youssef Badawy,
 Yasmina Reda 
 
 
